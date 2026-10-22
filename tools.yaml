@@ -1,0 +1,20 @@
+sources:
+  my-neo4j:
+    kind: neo4j
+    uri: neo4j+s://4a83a4d4.databases.neo4j.io
+    user: 4a83a4d4
+    password: "7D7LI0E5DgJIQQ0oZxOfQvKrMRWSzR7wBNyhBiWypcE"
+    database: 4a83a4d4
+
+tools:
+  read_cypher:
+    kind: neo4j-execute-cypher
+    source: my-neo4j
+    description: Run a read-only Cypher query against the NARIT Legal Graph.
+    readOnly: true
+
+  write_cypher:
+    kind: neo4j-execute-cypher
+    source: my-neo4j
+    description: Run a write Cypher query (CREATE, MERGE, SET, DELETE) against the NARIT Legal Graph.
+    readOnly: false

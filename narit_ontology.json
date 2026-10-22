@@ -1,0 +1,237 @@
+{
+  "ontology_name": "NARIT_Legal_Graph_Ontology",
+  "version": "1.0.0",
+  "domain": "Indian Criminal Law - NDPS, BNS, BNSS, BSA, Limitation Act, Police Manuals",
+  "description": "Graph-native ontology for a NARIT-AI-style legal investigation system. Models statutes, sections, cases, doctrines, procedures, police manuals, FIRs, and defence arguments with explicit relational structure to enable multi-hop legal reasoning.",
+  "node_labels": {
+    "Statute": {
+      "description": "A legislative enactment or code",
+      "properties": {
+        "id": "string (unique)",
+        "name": "string (e.g., NDPS_Act_1985)",
+        "full_title": "string",
+        "year": "integer",
+        "jurisdiction": "string (e.g., India, Gujarat)",
+        "status": "string (active | repealed | amended)",
+        "effective_from": "date",
+        "effective_to": "date (nullable)"
+      }
+    },
+    "Section": {
+      "description": "A specific numbered provision within a statute",
+      "properties": {
+        "id": "string (unique, e.g., NDPS_S42)",
+        "number": "string",
+        "title": "string",
+        "text": "string",
+        "statute_id": "string (FK to Statute.id)",
+        "offence_type": "string (substantive | procedural | evidentiary)",
+        "punishment": "string (nullable)",
+        "cognizable": "boolean (nullable)",
+        "bailable": "boolean (nullable)"
+      }
+    },
+    "Case": {
+      "description": "A judicial decision (Supreme Court, High Court, or lower court)",
+      "properties": {
+        "id": "string (unique)",
+        "citation": "string (e.g., (2017) 11 SCC 1)",
+        "case_name": "string",
+        "court": "string (Supreme Court | High Court | Sessions | Magistrate)",
+        "judgment_date": "date",
+        "bench": "string (nullable)",
+        "holding_summary": "string",
+        "source_document": "string (file path or URL)",
+        "source_paragraph": "string (nullable)",
+        "language": "string (en | gu)"
+      }
+    },
+    "Doctrine": {
+      "description": "A legal principle, test, or interpretive rule established or applied by courts",
+      "properties": {
+        "id": "string (unique)",
+        "name": "string (e.g., Chain_of_Custody)",
+        "description": "string",
+        "domain": "string (e.g., evidence, procedure, substantive)",
+        "status": "string (active | modified | overruled)"
+      }
+    },
+    "Procedure": {
+      "description": "A statutory or judicially mandated procedural step",
+      "properties": {
+        "id": "string (unique)",
+        "name": "string (e.g., Search_and_Seizure_NDPS_S42)",
+        "description": "string",
+        "mandatory": "boolean",
+        "sequence_order": "integer (nullable)",
+        "consequence_of_noncompliance": "string (nullable)"
+      }
+    },
+    "PoliceManual": {
+      "description": "A state or central police regulation or manual provision",
+      "properties": {
+        "id": "string (unique)",
+        "name": "string",
+        "state": "string (e.g., Gujarat)",
+        "chapter": "string (nullable)",
+        "provision_text": "string",
+        "last_updated": "date (nullable)"
+      }
+    },
+    "FIR": {
+      "description": "A First Information Report node representing an active investigation",
+      "properties": {
+        "id": "string (unique)",
+        "fir_number": "string",
+        "police_station": "string",
+        "date_filed": "date",
+        "offence_summary": "string",
+        "narcotic_type": "string (nullable, for NDPS)",
+        "quantity": "string (nullable)",
+        "status": "string (open | chargesheeted | closed)",
+        "language": "string (en | gu)"
+      }
+    },
+    "DefenceArgument": {
+      "description": "A defence strategy or argument raised in past cases",
+      "properties": {
+        "id": "string (unique)",
+        "name": "string",
+        "description": "string",
+        "success_rate": "float (nullable, derived)"
+      }
+    }
+  },
+  "relationship_types": {
+    "MAPS_TO": {
+      "from": "Section",
+      "to": "Section",
+      "description": "Cross-statute provision mapping (e.g., IPC S420 -> BNS S318)",
+      "properties": {
+        "mapping_type": "string (IDENTICAL | MODIFIED | NEW | OMITTED)",
+        "notes": "string (nullable)"
+      }
+    },
+    "DECIDED_UNDER": {
+      "from": "Case",
+      "to": "Section",
+      "description": "The primary statutory hook the case was decided under",
+      "properties": {
+        "role": "string (primary | secondary)"
+      }
+    },
+    "INTERPRETS": {
+      "from": "Case",
+      "to": "Section",
+      "description": "The case provides an authoritative reading of the provision",
+      "properties": {
+        "paragraph": "string (nullable)"
+      }
+    },
+    "ESTABLISHES": {
+      "from": "Case",
+      "to": "Doctrine",
+      "description": "The case lays down the doctrine or test",
+      "properties": {
+        "year": "integer (nullable)"
+      }
+    },
+    "APPLIES": {
+      "from": "Case",
+      "to": "Doctrine",
+      "description": "The case applies an existing doctrine",
+      "properties": {}
+    },
+    "CONSTRAINS": {
+      "from": "Case",
+      "to": "PoliceManual",
+      "description": "A judgment lays down binding guidelines on police procedure",
+      "properties": {
+        "binding": "boolean"
+      }
+    },
+    "CONSTRAINS_PROCEDURE": {
+      "from": "Case",
+      "to": "Procedure",
+      "description": "A judgment imposes judicial requirements on a procedural step",
+      "properties": {
+        "binding": "boolean"
+      }
+    },
+    "IMPLEMENTS": {
+      "from": "PoliceManual",
+      "to": "Section",
+      "description": "The manual operationalizes a statutory provision",
+      "properties": {}
+    },
+    "CITES": {
+      "from": "Case",
+      "to": "Case",
+      "description": "Judicial citation network",
+      "properties": {
+        "treatment": "string (followed | distinguished | doubted | overruled)"
+      }
+    },
+    "OVERRULES": {
+      "from": "Case",
+      "to": "Case",
+      "description": "The case overrules an earlier decision",
+      "properties": {
+        "year": "integer"
+      }
+    },
+    "PRECEDES": {
+      "from": "Procedure",
+      "to": "Procedure",
+      "description": "Mandatory sequence between procedural steps",
+      "properties": {
+        "strict": "boolean"
+      }
+    },
+    "REQUIRES": {
+      "from": "Procedure",
+      "to": "Section",
+      "description": "The procedural step is mandated by a statutory section",
+      "properties": {}
+    },
+    "TRIGGERS": {
+      "from": "FIR",
+      "to": "Procedure",
+      "description": "The FIR activates a mandatory procedural sequence",
+      "properties": {
+        "deadline_days": "integer (nullable)"
+      }
+    },
+    "CHARGED_UNDER": {
+      "from": "FIR",
+      "to": "Section",
+      "description": "The FIR invokes a specific statutory offence",
+      "properties": {}
+    },
+    "RAISES": {
+      "from": "Case",
+      "to": "DefenceArgument",
+      "description": "The case records a defence argument being raised",
+      "properties": {}
+    },
+    "REBUTS": {
+      "from": "Case",
+      "to": "DefenceArgument",
+      "description": "The case provides a judicial rebuttal to a defence argument",
+      "properties": {}
+    }
+  },
+  "indexes": [
+    "CREATE INDEX statute_name IF NOT EXISTS FOR (s:Statute) ON (s.name)",
+    "CREATE INDEX section_id IF NOT EXISTS FOR (s:Section) ON (s.id)",
+    "CREATE INDEX case_citation IF NOT EXISTS FOR (c:Case) ON (c.citation)",
+    "CREATE INDEX doctrine_name IF NOT EXISTS FOR (d:Doctrine) ON (d.name)",
+    "CREATE INDEX fir_number IF NOT EXISTS FOR (f:FIR) ON (f.fir_number)"
+  ],
+  "provenance_rules": {
+    "every_node_requires": ["id"],
+    "case_nodes_require": ["source_document"],
+    "section_nodes_require": ["statute_id", "text"],
+    "doctrine_nodes_require": ["name", "description"]
+  }
+}

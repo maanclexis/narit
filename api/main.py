@@ -8,9 +8,11 @@ load_dotenv()  # must come before any os.environ reads
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from api.db import get_driver, close_driver
 from api.routers import health, statutes, cases, doctrines, procedures, firs
+from api import analyze
 
 
 @asynccontextmanager
@@ -44,3 +46,8 @@ app.include_router(cases.router)
 app.include_router(doctrines.router)
 app.include_router(procedures.router)
 app.include_router(firs.router)
+app.include_router(analyze.router)
+
+# ── Static Files ───────────────────────────────────────────────────────
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
+

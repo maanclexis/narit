@@ -51,7 +51,7 @@ def test_gemini_extraction_mock(monkeypatch):
 
     import google.generativeai as genai
     monkeypatch.setattr(genai, "GenerativeModel", lambda name: MockModel(name))
-    monkeypatch.setattr(genai, "configure", lambda api_key: None)
+    monkeypatch.setattr(genai, "configure", lambda *a, **k: None)
 
     kws = analyze_mod.extract_keywords("Someone stole my motorcycle")
     assert kws == ["theft", "possession"]

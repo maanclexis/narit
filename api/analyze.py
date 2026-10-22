@@ -1,11 +1,13 @@
 import os
 import re
+import warnings
 import concurrent.futures
 from fastapi import APIRouter
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
 load_dotenv()
+warnings.filterwarnings("ignore", category=FutureWarning)
 
 router = APIRouter()
 
@@ -35,8 +37,11 @@ LLM_PROMPT = (
 
 def _call_gemini(prompt: str) -> str:
     import google.generativeai as genai
-    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-    model = genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-1.5-pro"))
+    try:
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"], transport="rest")
+    except TypeError:
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+    model = genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-3.5-flash"))
     return model.generate_content(prompt).text or ""
 
 
@@ -49,7 +54,7 @@ def _llm_keywords(facts: str, timeout: float = 3.0):
     try:
         with concurrent.futures.ThreadPoolExecutor(max_workers=1) as ex:
             fut = ex.submit(_call_gemini, prompt)
-            raw = fut.result(timeout=timeout)
+            raw = fut.result(timeout=max(timeout, 10.0))
     except Exception:
         return None
 

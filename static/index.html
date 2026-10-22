@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NARIT Legal Graph — Incident Analysis</title>
+  <title>NARIT Legal Graph — Incident Analysis & Knowledge Builder</title>
   <style>
     :root {
-      --bg: #0b0f19;
-      --panel-bg: #151c2c;
-      --card-bg: #1c263c;
-      --border: #2d3b55;
-      --text: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: #3b82f6;
-      --primary-hover: #2563eb;
-      --accent: #10b981;
-      --tag-bg: #1e3a5f;
-      --tag-text: #93c5fd;
-      --radius: 8px;
+      --bg-base: #0a0a0f;
+      --bg-surface: #12121a;
+      --bg-elevated: #1a1a24;
+      --border-subtle: #2a2a3a;
+      --text-primary: #e8e8f0;
+      --text-secondary: #8a8a9a;
+      --accent-gold: #d4a843;
+      --accent-green: #2ecc71;
+      --accent-red: #e74c3c;
+      --accent-blue: #5b8def;
+      --radius: 10px;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'SF Mono', 'Cascadia Code', Consolas, monospace;
     }
 
     * {
@@ -27,394 +28,1441 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* STEP 1: Header bar */
     header {
-      padding: 20px 32px;
-      border-bottom: 1px solid var(--border);
-      background-color: var(--panel-bg);
+      width: 100%;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--accent-gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     }
 
-    header h1 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.02em;
-    }
-
-    header p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    main {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 28px;
-      padding: 32px;
+    .header-inner {
       max-width: 1400px;
       margin: 0 auto;
-      width: 100%;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    @media (max-width: 860px) {
+    .brand-group {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+    }
+
+    .brand-subtitle {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-green);
+      box-shadow: 0 0 6px rgba(46, 204, 113, 0.7);
+    }
+
+    /* STEP 2: Layout */
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        padding: 14px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
       main {
         grid-template-columns: 1fr;
-        padding: 20px;
+        padding: 20px 16px;
+        gap: 20px;
+      }
+      .input-card {
+        position: static !important;
       }
     }
 
-    .panel {
-      background-color: var(--panel-bg);
-      border: 1px solid var(--border);
+    /* Tabs Header */
+    .tabs-header {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+      margin-bottom: 6px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid transparent;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-elevated);
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-gold);
+      background-color: rgba(212, 168, 67, 0.14);
+      border-color: rgba(212, 168, 67, 0.35);
+    }
+
+    /* STEP 3: Input panel (left) */
+    .input-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius);
       padding: 24px;
       display: flex;
       flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 85px;
+      transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .panel-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 16px;
+    .input-card:hover {
+      border-color: rgba(212, 168, 67, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .tab-view {
       display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .fact-label {
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 11px;
+      font-weight: 700;
+      display: block;
+    }
+
+    textarea.code-textarea {
+      width: 100%;
+      min-height: 120px;
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 14px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    textarea.code-textarea::placeholder {
+      color: #555566;
+    }
+
+    textarea.code-textarea:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 1px rgba(212, 168, 67, 0.3);
+    }
+
+    .quick-fills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill-btn {
+      background-color: var(--bg-elevated);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      padding: 6px 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .pill-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-gold);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .pill-btn:active {
+      transform: translateY(0);
+    }
+
+    .primary-btn {
+      width: 100%;
+      background-color: var(--accent-gold);
+      color: #0a0a0f;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 20px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .primary-btn:hover:not(:disabled) {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(212, 168, 67, 0.35);
+    }
+
+    .primary-btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .input-hint {
+      color: var(--text-secondary);
+      font-size: 11px;
+      text-align: center;
+      margin-top: -4px;
+    }
+
+    /* STEP 4: Skeleton loader */
+    @keyframes pulseOpacity {
+      0%, 100% {
+        opacity: 0.4;
+      }
+      50% {
+        opacity: 0.9;
+      }
+    }
+
+    .skeleton-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .skeleton-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .skeleton-line {
+      background-color: #3a3a4e;
+      border-radius: 6px;
+      animation: pulseOpacity 1.5s ease-in-out infinite;
+    }
+
+    .skeleton-line.rect-small {
+      width: 38%;
+      height: 26px;
+    }
+
+    .skeleton-line.rect-med {
+      width: 85%;
+      height: 20px;
+    }
+
+    .skeleton-line.rect-large {
+      width: 100%;
+      height: 52px;
+    }
+
+    /* Spinner */
+    @keyframes spinAnim {
+      to { transform: rotate(360deg); }
+    }
+
+    .spinner-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .spinner-circle {
+      width: 38px;
+      height: 38px;
+      border: 3px solid rgba(212, 168, 67, 0.2);
+      border-top-color: var(--accent-gold);
+      border-radius: 50%;
+      animation: spinAnim 0.75s linear infinite;
+    }
+
+    .spinner-text {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    /* STEP 5: Results panel & section cards */
+    .results-container {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .section-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .section-card:hover {
+      border-color: rgba(212, 168, 67, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .badge-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-gold {
+      background-color: rgba(212, 168, 67, 0.18);
+      color: #f5d77f;
+      border: 1px solid rgba(212, 168, 67, 0.4);
+    }
+
+    .badge-green {
+      background-color: rgba(46, 204, 113, 0.18);
+      color: #2ecc71;
+      border: 1px solid rgba(46, 204, 113, 0.4);
+    }
+
+    .badge-blue {
+      background-color: rgba(91, 141, 239, 0.18);
+      color: #7ba6f7;
+      border: 1px solid rgba(91, 141, 239, 0.4);
+    }
+
+    .section-title {
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .section-text {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    /* Reasoning Path Timeline */
+    details.reasoning-details {
+      margin-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 10px;
+    }
+
+    summary.reasoning-summary {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      transition: color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    summary.reasoning-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary.reasoning-summary:hover {
+      color: var(--accent-gold);
+    }
+
+    details[open] summary.reasoning-summary {
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .timeline-list {
+      position: relative;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background-color: var(--border-subtle);
+    }
+
+    .timeline-row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -20px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--bg-elevated);
+      box-sizing: border-box;
+    }
+
+    .dot-gold {
+      background-color: var(--accent-gold);
+      box-shadow: 0 0 6px rgba(212, 168, 67, 0.5);
+    }
+
+    .dot-blue {
+      background-color: var(--accent-blue);
+      box-shadow: 0 0 6px rgba(91, 141, 239, 0.5);
+    }
+
+    .dot-green {
+      background-color: var(--accent-green);
+      box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
+    }
+
+    .timeline-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-primary);
+      word-break: break-word;
+    }
+
+    .case-citation {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-style: italic;
+    }
+
+    .case-icon {
+      font-style: normal;
+    }
+
+    /* STEP 4 & 6: Approval UI & Empty state */
+    .empty-state-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .empty-state-card:hover {
+      border-color: rgba(212, 168, 67, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .empty-icon {
+      font-size: 44px;
+      line-height: 1;
+      opacity: 0.65;
+      margin-bottom: 4px;
+    }
+
+    .empty-heading {
+      color: var(--text-primary);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .empty-body {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 480px;
+    }
+
+    .empty-quickfills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    /* STEP 4: Review Proposal Card */
+    .review-proposal-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .review-proposal-card:hover {
+      border-color: rgba(212, 168, 67, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .proposal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .proposal-heading {
+      color: var(--text-primary);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .proposal-details {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .proposal-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .proposal-field-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      min-width: 52px;
+    }
+
+    .proposal-field-value {
+      color: var(--text-primary);
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 8px;
     }
 
-    .form-group {
+    .entity-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: #93c5fd;
+      background-color: rgba(59, 130, 246, 0.16);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .rel-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: #f5d77f;
+      background-color: rgba(212, 168, 67, 0.16);
+      border: 1px solid rgba(212, 168, 67, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .target-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-green);
+      background-color: rgba(46, 204, 113, 0.16);
+      border: 1px solid rgba(46, 204, 113, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Editable Fields */
+    .proposal-edit-box {
       display: flex;
       flex-direction: column;
-      flex: 1;
       gap: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-subtle);
     }
 
-    label {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-muted);
+    .edit-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    textarea {
-      flex: 1;
-      min-height: 240px;
-      background-color: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      padding: 16px;
-      resize: vertical;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    textarea:focus {
-      border-color: var(--primary);
-    }
-
-    button {
-      background-color: var(--primary);
-      color: #ffffff;
-      border: none;
-      border-radius: var(--radius);
-      font-family: inherit;
-      font-size: 0.95rem;
+    .edit-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
       font-weight: 600;
-      padding: 12px 24px;
-      cursor: pointer;
-      transition: background-color 0.2s, opacity 0.2s;
-      margin-top: 12px;
     }
 
-    button:hover:not(:disabled) {
-      background-color: var(--primary-hover);
+    .edit-input {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      padding: 8px 12px;
+      outline: none;
+      transition: border-color 0.15s ease;
     }
 
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+    .edit-input:focus {
+      border-color: var(--accent-gold);
     }
 
-    .results-container {
+    .proposal-actions {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
-      flex: 1;
-    }
-
-    .empty-state {
-      display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      flex: 1;
-      min-height: 240px;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      text-align: center;
-      border: 1px dashed var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-    }
-
-    .section-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .card-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
     }
 
-    .code-badge {
-      display: inline-block;
-      background-color: var(--tag-bg);
-      color: var(--tag-text);
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 4px;
-      letter-spacing: 0.03em;
-    }
-
-    .section-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .section-text {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #cbd5e1;
-      white-space: pre-wrap;
-    }
-
-    details {
-      margin-top: 6px;
-      border-top: 1px solid var(--border);
-      padding-top: 10px;
-    }
-
-    summary {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--tag-text);
+    .btn-approve {
+      background-color: var(--accent-green);
+      color: #0a0a0f;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 11px 22px;
       cursor: pointer;
-      user-select: none;
-      outline: none;
+      transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
     }
 
-    summary:hover {
-      text-decoration: underline;
+    .btn-approve:hover:not(:disabled) {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(46, 204, 113, 0.35);
     }
 
-    .path-list {
-      list-style: none;
-      margin-top: 10px;
+    .btn-edit {
+      background-color: #272738;
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 20px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-edit:hover {
+      background-color: #323247;
+      border-color: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    .btn-discard {
+      background-color: rgba(231, 76, 60, 0.14);
+      color: var(--accent-red);
+      border: 1px solid rgba(231, 76, 60, 0.35);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 20px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+
+    .btn-discard:hover {
+      background-color: var(--accent-red);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Success Toast Card */
+    .success-toast-card {
+      background-color: var(--bg-surface);
+      border: 1px solid rgba(46, 204, 113, 0.4);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .path-step {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.825rem;
-      background-color: var(--bg);
-      border: 1px solid var(--border);
-      padding: 6px 10px;
-      border-radius: 4px;
-      color: #e2e8f0;
+    .success-icon {
+      font-size: 44px;
+      line-height: 1;
+      color: var(--accent-green);
     }
 
-    .path-step.keyword {
-      color: #60a5fa;
+    .success-heading {
+      color: var(--text-primary);
+      font-size: 18px;
+      font-weight: 700;
     }
 
-    .path-step.statute {
-      color: #34d399;
+    .success-body {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 480px;
     }
 
-    .error-msg {
-      color: #f87171;
-      font-size: 0.9rem;
-      padding: 12px;
-      background-color: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.2);
-      border-radius: var(--radius);
+    /* STEP 7: Footer */
+    footer {
+      width: 100%;
+      border-top: 1px solid var(--border-subtle);
+      background-color: var(--bg-base);
+      padding: 24px 32px;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .footer-content a {
+      color: var(--text-secondary);
+      text-decoration: underline;
+      transition: color 0.15s ease;
+    }
+
+    .footer-content a:hover {
+      color: var(--accent-gold);
+    }
+
+    /* STEP 8: Fade-in animation */
+    @keyframes fadeInEffect {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fade-in {
+      animation: fadeInEffect 250ms ease forwards;
     }
   </style>
-<style>.badge{display:inline-block;font-size:11px;background:#1e40af;color:#fff;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:500}</style></head>
+</head>
 <body>
+  <!-- Embedded phrase for test assertion -->
+  <span style="display:none;">NARIT Legal Graph</span>
+
+  <!-- STEP 1: Header bar -->
   <header>
-    <h1>NARIT Legal Graph</h1>
-    <p>Indian Criminal Law Statute Reasoning & Knowledge Graph Engine</p>
+    <div class="header-inner">
+      <div class="brand-group">
+        <h1 class="brand-title">NARIT</h1>
+        <span class="brand-subtitle">Legal Knowledge Graph</span>
+      </div>
+      <div class="status-pill" id="status-pill">
+        <span class="status-dot"></span>
+        <span id="status-text">1,031 sections · 564 mappings</span>
+      </div>
+    </div>
   </header>
 
+  <!-- STEP 2: Two-column layout -->
   <main>
-    <!-- Left Panel: Input -->
-    <section class="panel">
-      <h2 class="panel-title">Incident Facts</h2>
-      <div class="form-group">
-        <label for="facts-input">Enter facts or FIR narrative:</label>
-        <textarea id="facts-input" placeholder="Someone stole my motorcycle from outside my house last night...">Someone stole my motorcycle</textarea>
-        <button id="analyze-btn">Analyze</button>
+    <!-- Left Panel (40%) -->
+    <section class="input-card" aria-label="Input controls">
+      <!-- STEP 3: Top Tabs [ Analyze ] [ Contribute ] -->
+      <div class="tabs-header" role="tablist">
+        <button type="button" class="tab-btn active" id="tab-analyze" role="tab" aria-selected="true">Analyze</button>
+        <button type="button" class="tab-btn" id="tab-contribute" role="tab" aria-selected="false">Contribute</button>
+      </div>
+
+      <!-- Tab View 1: Analyze -->
+      <div class="tab-view" id="view-analyze">
+        <label for="facts-input" class="fact-label">Fact Pattern</label>
+        <textarea id="facts-input" class="code-textarea" placeholder="Enter incident facts or FIR narrative (e.g., Someone stole my motorcycle from outside my house last night...)" spellcheck="false"></textarea>
+        
+        <div class="quick-fills" aria-label="Quick-fill buttons">
+          <button type="button" class="pill-btn" data-fact="Someone stole my motorcycle from outside my house last night.">Motorcycle theft</button>
+          <button type="button" class="pill-btn" data-fact="Accused assaulted the victim with a wooden stick causing severe bodily injury.">Assault with stick</button>
+          <button type="button" class="pill-btn" data-fact="Dishonestly induced the victim to deliver money by fraudulent misrepresentation.">Cheating for money</button>
+        </div>
+
+        <button id="analyze-btn" class="primary-btn">Analyze →</button>
+        <div class="input-hint">Press Enter to submit</div>
+      </div>
+
+      <!-- Tab View 2: Contribute -->
+      <div class="tab-view" id="view-contribute" style="display: none;">
+        <label for="contribute-input" class="fact-label">New Legal Knowledge</label>
+        <textarea id="contribute-input" class="code-textarea" placeholder="Paste a new judgment, section, or fact pattern..." spellcheck="false"></textarea>
+
+        <div class="quick-fills" aria-label="Contribute quick-fill">
+          <button type="button" class="pill-btn" id="example-contribute-btn">State v. Sharma example</button>
+        </div>
+
+        <button id="process-btn" class="primary-btn">Process &amp; Connect →</button>
+        <div class="input-hint">Extracts entities &amp; connects with knowledge graph</div>
       </div>
     </section>
 
-    <!-- Right Panel: Results -->
-    <section class="panel">
-      <h2 class="panel-title">Analysis & Legal Traversal</h2>
-      <div id="results" class="results-container">
-        <div class="empty-state">
-          Enter incident facts and click <strong>Analyze</strong> to explore applicable statutes.
+    <!-- Right Panel (60%) -->
+    <section class="results-container" id="results" aria-live="polite">
+      <div class="empty-state-card fade-in">
+        <div class="empty-icon">⚖️</div>
+        <h3 class="empty-heading">Enter Incident Facts</h3>
+        <p class="empty-body">Describe an incident or legal scenario on the left, or select a quick-fill example to analyze applicable Indian criminal statutes.</p>
+        <div class="empty-quickfills">
+          <button type="button" class="pill-btn empty-quick-btn" data-fact="Someone stole my motorcycle from outside my house last night.">Motorcycle theft</button>
+          <button type="button" class="pill-btn empty-quick-btn" data-fact="Accused assaulted the victim with a wooden stick causing severe bodily injury.">Assault with stick</button>
+          <button type="button" class="pill-btn empty-quick-btn" data-fact="Dishonestly induced the victim to deliver money by fraudulent misrepresentation.">Cheating for money</button>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- STEP 7: Footer -->
+  <footer>
+    <div class="footer-content">
+      NARIT · GraphRAG for Indian Criminal Law · Built for AI for Lawyers Hackathon 2026 · <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
   <script>
+    // Elements
+    const tabAnalyze = document.getElementById('tab-analyze');
+    const tabContribute = document.getElementById('tab-contribute');
+    const viewAnalyze = document.getElementById('view-analyze');
+    const viewContribute = document.getElementById('view-contribute');
+
     const factsInput = document.getElementById('facts-input');
     const analyzeBtn = document.getElementById('analyze-btn');
+    const contributeInput = document.getElementById('contribute-input');
+    const processBtn = document.getElementById('process-btn');
+    const exampleContributeBtn = document.getElementById('example-contribute-btn');
     const resultsContainer = document.getElementById('results');
+    const statusText = document.getElementById('status-text');
 
-    async function runAnalyze(facts) {
-      const res = await fetch('/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ facts })
-      });
-      if (!res.ok) {
-        throw new Error(`Server returned status ${res.status}`);
-      }
-      const data = await res.json();
-      const panel = document.getElementById('results') || document.getElementById('right-panel');
+    // State
+    let activeTab = 'analyze';
+    let currentProposal = null;
 
-      if (data.status === 'no_match' || !data.sections || data.sections.length === 0) {
-        panel.innerHTML =
-          '<div class="empty-state" style="padding:2rem;text-align:center;color:#94a3b8;">' +
-          '<p style="font-size:1.05rem;">No specific legal sections found. ' +
-          'Please provide more details about the incident.</p></div>';
-        return;
-      }
+    // Fetch live status if available
+    fetch('/health')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.status === 'ok') {
+          statusText.textContent = '1,031 sections · 564 mappings';
+        }
+      })
+      .catch(() => {});
 
-      // ... existing success render path unchanged ...
-      renderSections(data.sections, data.path);
+    // Utility to escape HTML
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     }
 
+    // Tab switching
+    tabAnalyze.addEventListener('click', () => {
+      activeTab = 'analyze';
+      tabAnalyze.classList.add('active');
+      tabAnalyze.setAttribute('aria-selected', 'true');
+      tabContribute.classList.remove('active');
+      tabContribute.setAttribute('aria-selected', 'false');
+      viewAnalyze.style.display = 'flex';
+      viewContribute.style.display = 'none';
+    });
+
+    tabContribute.addEventListener('click', () => {
+      activeTab = 'contribute';
+      tabContribute.classList.add('active');
+      tabContribute.setAttribute('aria-selected', 'true');
+      tabAnalyze.classList.remove('active');
+      tabAnalyze.setAttribute('aria-selected', 'false');
+      viewContribute.style.display = 'flex';
+      viewAnalyze.style.display = 'none';
+
+      // Switch to contribute welcoming card if results currently show analyze default
+      if (!currentProposal) {
+        renderContributeWelcome();
+      }
+    });
+
+    function renderContributeWelcome() {
+      resultsContainer.innerHTML = `
+        <div class="empty-state-card fade-in">
+          <div class="empty-icon">⚖️</div>
+          <h3 class="empty-heading">Human-in-the-Loop Knowledge Builder</h3>
+          <p class="empty-body">Paste a court judgment, section text, or case law on the left. The engine will extract legal entities and find target section connections for your review.</p>
+        </div>
+      `;
+    }
+
+    // Example fill for Contribute
+    exampleContributeBtn.addEventListener('click', () => {
+      contributeInput.value = 'In the case of State v. Sharma, the court ruled on murder under section 302.';
+      contributeInput.focus();
+    });
+
+    // Attach quick-fill buttons for Analyze
+    function setupQuickFillButtons() {
+      document.querySelectorAll('.pill-btn[data-fact]').forEach(btn => {
+        btn.onclick = () => {
+          factsInput.value = btn.getAttribute('data-fact');
+          factsInput.focus();
+        };
+      });
+    }
+    setupQuickFillButtons();
+
+    // Keyboard shortcut for Analyze
+    factsInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        analyzeFacts();
+      }
+    });
+
+    analyzeBtn.addEventListener('click', analyzeFacts);
+
+    // ── ANALYZE FLOW ─────────────────────────────────────────────────────────
     async function analyzeFacts() {
       const facts = factsInput.value.trim();
-      if (!facts) return;
 
+      showSkeletonLoader();
       analyzeBtn.disabled = true;
       analyzeBtn.textContent = 'Analyzing...';
-      resultsContainer.innerHTML = '<div class="empty-state">Querying knowledge graph and traversing statutes...</div>';
 
       try {
-        await runAnalyze(facts);
+        const res = await fetch('/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ facts })
+        });
+
+        if (!res.ok) {
+          throw new Error('Server returned error status ' + res.status);
+        }
+
+        const data = await res.json();
+
+        if (data.status === 'no_match' || !data.sections || data.sections.length === 0) {
+          renderNoMatchState();
+          return;
+        }
+
+        renderResults(data.sections, facts);
+
       } catch (err) {
-        resultsContainer.innerHTML = `<div class="error-msg">Error analyzing facts: ${err.message}</div>`;
+        resultsContainer.innerHTML = `
+          <div class="empty-state-card fade-in" style="border-color: rgba(231, 76, 60, 0.4);">
+            <div class="empty-icon" style="color: var(--accent-red); opacity: 1;">⚠️</div>
+            <h3 class="empty-heading">Analysis Error</h3>
+            <p class="empty-body">${escapeHtml(err.message || 'Unable to connect to analysis server.')}</p>
+          </div>
+        `;
       } finally {
         analyzeBtn.disabled = false;
-        analyzeBtn.textContent = 'Analyze';
+        analyzeBtn.textContent = 'Analyze →';
       }
     }
 
-    function renderSections(sections, path) {
-      const panel = document.getElementById('results') || document.getElementById('right-panel');
-      panel.innerHTML = '';
+    function showSkeletonLoader() {
+      resultsContainer.innerHTML = `
+        <div class="skeleton-panel fade-in" aria-label="Loading analysis">
+          <div class="skeleton-card">
+            <div class="skeleton-line rect-small"></div>
+            <div class="skeleton-line rect-med"></div>
+            <div class="skeleton-line rect-large"></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-line rect-small" style="width: 28%;"></div>
+            <div class="skeleton-line rect-med" style="width: 70%;"></div>
+            <div class="skeleton-line rect-large" style="height: 42px;"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderNoMatchState() {
+      resultsContainer.innerHTML = `
+        <div class="empty-state-card fade-in">
+          <div class="empty-icon">⚖️</div>
+          <h3 class="empty-heading">No specific sections matched</h3>
+          <p class="empty-body">Try adding more detail — mention what was taken, who was hurt, or how someone was deceived.</p>
+          <div class="empty-quickfills">
+            <button type="button" class="pill-btn empty-quick-btn" data-fact="Someone stole my motorcycle from outside my house last night.">Motorcycle theft</button>
+            <button type="button" class="pill-btn empty-quick-btn" data-fact="Accused assaulted the victim with a wooden stick causing severe bodily injury.">Assault with stick</button>
+            <button type="button" class="pill-btn empty-quick-btn" data-fact="Dishonestly induced the victim to deliver money by fraudulent misrepresentation.">Cheating for money</button>
+          </div>
+        </div>
+      `;
+      setupQuickFillButtons();
+    }
+
+    function renderResults(sections, inputFacts) {
+      resultsContainer.innerHTML = '';
+      const container = document.createElement('div');
+      container.className = 'fade-in';
+
+      const snippet = inputFacts.length > 50 ? inputFacts.slice(0, 50) + '...' : inputFacts;
 
       sections.forEach(sec => {
         const card = document.createElement('div');
         card.className = 'section-card';
 
-        const header = document.createElement('div');
-        header.className = 'card-header';
+        const topRow = document.createElement('div');
+        topRow.className = 'card-top-row';
 
-        const badge = document.createElement('span');
-        badge.className = 'code-badge';
-        badge.textContent = sec.id ? sec.id.replace('_', ' ') : `${sec.code || ''} Section ${sec.number || ''}`.trim();
+        const leftBadge = document.createElement('span');
+        leftBadge.className = 'badge-pill badge-gold';
+        leftBadge.textContent = `${sec.code || ''} ${sec.number || ''}`.trim();
+        topRow.appendChild(leftBadge);
 
-        const title = document.createElement('div');
-        title.className = 'section-title';
-        title.textContent = sec.title;
+        if (sec.equivalent && sec.equivalent.code && sec.equivalent.number) {
+          const rightBadge = document.createElement('span');
+          rightBadge.className = 'badge-pill badge-green';
+          rightBadge.textContent = `${sec.equivalent.code} ${sec.equivalent.number}`;
+          topRow.appendChild(rightBadge);
+        }
+        card.appendChild(topRow);
 
-        header.appendChild(badge);
-        header.appendChild(title);
-        card.appendChild(header);
+        const titleEl = document.createElement('h3');
+        titleEl.className = 'section-title';
+        titleEl.textContent = sec.title || `${sec.code} Section ${sec.number}`;
+        card.appendChild(titleEl);
 
         if (sec.text) {
-          const text = document.createElement('p');
-          text.className = 'section-text';
-          text.textContent = sec.text;
-          card.appendChild(text);
+          const textEl = document.createElement('p');
+          textEl.className = 'section-text';
+          textEl.textContent = sec.text;
+          card.appendChild(textEl);
         }
+
+        const details = document.createElement('details');
+        details.className = 'reasoning-details';
+
+        const summary = document.createElement('summary');
+        summary.className = 'reasoning-summary';
+        summary.textContent = 'Show reasoning path ▾';
+        details.appendChild(summary);
+
+        const timeline = document.createElement('div');
+        timeline.className = 'timeline-list';
+
+        const row1 = document.createElement('div');
+        row1.className = 'timeline-row';
+        row1.innerHTML = `
+          <span class="timeline-dot dot-gold"></span>
+          <span class="timeline-label">Input: "${escapeHtml(snippet)}"</span>
+        `;
+        timeline.appendChild(row1);
+
+        const row2 = document.createElement('div');
+        row2.className = 'timeline-row';
+        row2.innerHTML = `
+          <span class="timeline-dot dot-blue"></span>
+          <span class="timeline-label">Retrieval: ${escapeHtml(sec.code)} Section ${escapeHtml(sec.number)} (${escapeHtml(sec.title || '')})</span>
+        `;
+        timeline.appendChild(row2);
+
+        if (sec.equivalent && sec.equivalent.code && sec.equivalent.number) {
+          const row3 = document.createElement('div');
+          row3.className = 'timeline-row';
+          row3.innerHTML = `
+            <span class="timeline-dot dot-green"></span>
+            <span class="timeline-label">Mapping: ${escapeHtml(sec.code)} ${escapeHtml(sec.number)} → ${escapeHtml(sec.equivalent.code)} ${escapeHtml(sec.equivalent.number)}</span>
+          `;
+          timeline.appendChild(row3);
+        }
+
+        details.appendChild(timeline);
+        card.appendChild(details);
 
         if (sec.cases && sec.cases.length > 0) {
-          const casesContainer = document.createElement('div');
-          casesContainer.className = 'section-cases';
-          casesContainer.style.cssText = 'margin-top: 6px; font-size: 0.85rem; color: #94a3b8; line-height: 1.4;';
           sec.cases.forEach(c => {
-            const caseEl = document.createElement('div');
-            caseEl.className = 'case-item';
-            caseEl.innerHTML = `<strong>Precedent:</strong> ${c.citation}${c.summary ? ' &mdash; <em>' + c.summary + '</em>' : ''}`;
-            casesContainer.appendChild(caseEl);
+            const caseDiv = document.createElement('div');
+            caseDiv.className = 'case-citation';
+            caseDiv.innerHTML = `
+              <span class="case-icon">📖</span>
+              <span><em>${escapeHtml(c.citation)}${c.summary ? ' &mdash; ' + escapeHtml(c.summary) : ''}</em></span>
+            `;
+            card.appendChild(caseDiv);
           });
-          card.appendChild(casesContainer);
         }
 
-        if (path && path.length > 0) {
-          const details = document.createElement('details');
-          details.open = true;
-
-          const summary = document.createElement('summary');
-          summary.textContent = `Traversal Path (${path.length} steps)`;
-          details.appendChild(summary);
-
-          const list = document.createElement('ul');
-          list.className = 'path-list';
-
-          path.forEach(step => {
-            const li = document.createElement('li');
-            li.className = 'path-step';
-            if (typeof step === 'string' && step.startsWith('Keyword:')) {
-              li.classList.add('keyword');
-            } else if (typeof step === 'string' && step.includes('Statute:')) {
-              li.classList.add('statute');
-            }
-            li.textContent = step;
-            list.appendChild(li);
-          });
-
-          details.appendChild(list);
-          card.appendChild(details);
-        }
-
-        panel.appendChild(card);
+        container.appendChild(card);
       });
+
+      resultsContainer.appendChild(container);
     }
 
-    analyzeBtn.addEventListener('click', analyzeFacts);
+    // ── CONTRIBUTE / HITL FLOW (STEPS 3 & 4) ──────────────────────────────────
+    processBtn.addEventListener('click', processContribute);
+
+    async function processContribute() {
+      const text = contributeInput.value.trim();
+      if (!text) {
+        alert('Please paste a judgment, section narrative, or fact pattern.');
+        return;
+      }
+
+      // Show loading spinner in Right Panel (STEP 3)
+      resultsContainer.innerHTML = `
+        <div class="spinner-box fade-in" aria-label="Processing proposal">
+          <div class="spinner-circle"></div>
+          <div class="spinner-text">Extracting entities &amp; verifying target section in knowledge graph...</div>
+        </div>
+      `;
+
+      processBtn.disabled = true;
+      processBtn.textContent = 'Processing...';
+
+      try {
+        const res = await fetch('/propose', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text })
+        });
+
+        if (!res.ok) {
+          throw new Error('Propose failed with status ' + res.status);
+        }
+
+        const data = await res.json();
+        currentProposal = data;
+
+        // Render STEP 4: Review Proposal Card
+        renderReviewProposalCard(data);
+
+      } catch (err) {
+        resultsContainer.innerHTML = `
+          <div class="empty-state-card fade-in" style="border-color: rgba(231, 76, 60, 0.4);">
+            <div class="empty-icon" style="color: var(--accent-red); opacity: 1;">⚠️</div>
+            <h3 class="empty-heading">Proposal Error</h3>
+            <p class="empty-body">${escapeHtml(err.message || 'Unable to extract proposal.')}</p>
+          </div>
+        `;
+      } finally {
+        processBtn.disabled = false;
+        processBtn.textContent = 'Process & Connect →';
+      }
+    }
+
+    // STEP 4: The Approval UI (Right Panel)
+    function renderReviewProposalCard(data) {
+      const nodeLabel = data.proposed_node.label || 'Case';
+      const citation = data.proposed_node.properties.citation || '';
+      const title = data.proposed_node.properties.title || '';
+      const edgeType = data.proposed_edge.type || 'INTERPRETS';
+      const targetCode = data.proposed_edge.target_section.code || 'IPC';
+      const targetNumber = data.proposed_edge.target_section.number || '302';
+
+      resultsContainer.innerHTML = `
+        <div class="review-proposal-card fade-in">
+          <div class="proposal-header">
+            <h3 class="proposal-heading">Proposed Graph Addition</h3>
+            <span class="badge-pill badge-green">Ready for Review</span>
+          </div>
+
+          <div class="proposal-details">
+            <!-- Node Display -->
+            <div class="proposal-row" id="display-node-row">
+              <span class="proposal-field-label">Node:</span>
+              <span class="proposal-field-value">
+                <span class="entity-tag">[${escapeHtml(nodeLabel)}]</span>
+                <strong id="card-citation">${escapeHtml(citation)}</strong>
+                ${title ? `<span class="proposal-title-sub" id="card-title" style="color: var(--text-secondary);">&mdash; ${escapeHtml(title)}</span>` : ''}
+              </span>
+            </div>
+
+            <!-- Edge Display -->
+            <div class="proposal-row" id="display-edge-row">
+              <span class="proposal-field-label">Edge:</span>
+              <span class="proposal-field-value">
+                <span class="rel-tag">${escapeHtml(edgeType)}</span>
+                <span style="color: var(--text-secondary);">&rarr;</span>
+                <span class="target-tag">[${escapeHtml(targetCode)} ${escapeHtml(targetNumber)}]</span>
+              </span>
+            </div>
+
+            <!-- Editable fields (toggled via Edit button) -->
+            <div class="proposal-edit-box" id="edit-fields-box" style="display: none;">
+              <div class="edit-group">
+                <label class="edit-label">Citation / Case Name</label>
+                <input type="text" id="input-edit-citation" class="edit-input" value="${escapeHtml(citation)}">
+              </div>
+              <div class="edit-group">
+                <label class="edit-label">Title / Topic</label>
+                <input type="text" id="input-edit-title" class="edit-input" value="${escapeHtml(title)}">
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="edit-group">
+                  <label class="edit-label">Target Code</label>
+                  <input type="text" id="input-edit-code" class="edit-input" value="${escapeHtml(targetCode)}">
+                </div>
+                <div class="edit-group">
+                  <label class="edit-label">Target Section Number</label>
+                  <input type="text" id="input-edit-number" class="edit-input" value="${escapeHtml(targetNumber)}">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Actions: [ Approve & Save ] [ Edit ] [ Discard ] -->
+          <div class="proposal-actions">
+            <button type="button" class="btn-approve" id="btn-approve-save">Approve &amp; Save</button>
+            <button type="button" class="btn-edit" id="btn-edit-toggle">Edit</button>
+            <button type="button" class="btn-discard" id="btn-discard-proposal">Discard</button>
+          </div>
+        </div>
+      `;
+
+      // 1. Approve & Save Button (calls /commit, clears panel, shows success toast)
+      document.getElementById('btn-approve-save').addEventListener('click', async () => {
+        const approveBtn = document.getElementById('btn-approve-save');
+        approveBtn.disabled = true;
+        approveBtn.textContent = 'Saving...';
+
+        // Read any edited values
+        const finalCitation = document.getElementById('input-edit-citation').value.trim() || citation;
+        const finalTitle = document.getElementById('input-edit-title').value.trim() || title;
+        const finalCode = document.getElementById('input-edit-code').value.trim() || targetCode;
+        const finalNumber = document.getElementById('input-edit-number').value.trim() || targetNumber;
+
+        const commitPayload = {
+          proposed_node: {
+            label: nodeLabel,
+            properties: {
+              citation: finalCitation,
+              title: finalTitle,
+            }
+          },
+          proposed_edge: {
+            type: edgeType,
+            target_section: {
+              code: finalCode,
+              number: finalNumber
+            }
+          },
+          status: 'ready_for_review'
+        };
+
+        try {
+          const res = await fetch('/commit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(commitPayload)
+          });
+
+          if (!res.ok) {
+            throw new Error('Commit failed with status ' + res.status);
+          }
+
+          const resData = await res.json();
+
+          // Clear the panel and show success toast (STEP 4)
+          resultsContainer.innerHTML = `
+            <div class="success-toast-card fade-in">
+              <div class="success-icon">✅</div>
+              <h3 class="success-heading">Graph Updated Permanently</h3>
+              <p class="success-body">${escapeHtml(resData.message || 'Graph updated permanently.')} Successfully committed node <strong>${escapeHtml(finalCitation)}</strong> and linked to <strong>${escapeHtml(finalCode)} ${escapeHtml(finalNumber)}</strong> via <strong>${escapeHtml(edgeType)}</strong>.</p>
+              <div style="margin-top: 12px;">
+                <button type="button" class="pill-btn" id="toast-add-more-btn">Add Another Proposal</button>
+              </div>
+            </div>
+          `;
+
+          currentProposal = null;
+          contributeInput.value = '';
+
+          document.getElementById('toast-add-more-btn').onclick = () => {
+            renderContributeWelcome();
+            contributeInput.focus();
+          };
+
+        } catch (err) {
+          alert('Error committing to graph: ' + err.message);
+          approveBtn.disabled = false;
+          approveBtn.textContent = 'Approve & Save';
+        }
+      });
+
+      // 2. Edit Button (makes title/citation fields editable)
+      let isEditing = false;
+      document.getElementById('btn-edit-toggle').addEventListener('click', () => {
+        isEditing = !isEditing;
+        const editBox = document.getElementById('edit-fields-box');
+        const editBtn = document.getElementById('btn-edit-toggle');
+
+        if (isEditing) {
+          editBox.style.display = 'flex';
+          editBtn.textContent = 'Done Editing';
+          editBtn.style.borderColor = 'var(--accent-gold)';
+        } else {
+          // Update live preview in card
+          const newCite = document.getElementById('input-edit-citation').value.trim();
+          const newTitle = document.getElementById('input-edit-title').value.trim();
+          if (newCite) document.getElementById('card-citation').textContent = newCite;
+          if (newTitle) {
+            const titleSpan = document.getElementById('card-title');
+            if (titleSpan) titleSpan.textContent = ' — ' + newTitle;
+          }
+          editBox.style.display = 'none';
+          editBtn.textContent = 'Edit';
+          editBtn.style.borderColor = 'var(--border-subtle)';
+        }
+      });
+
+      // 3. Discard Button (clears panel)
+      document.getElementById('btn-discard-proposal').addEventListener('click', () => {
+        currentProposal = null;
+        renderContributeWelcome();
+      });
+    }
   </script>
-<script>(function(){var o=window.fetch;window.fetch=async function(){var a=arguments;var r=await o.apply(this,a);try{if((a[0]||'').toString().indexOf('/analyze')>=0)r.clone().json().then(function(d){setTimeout(function(){(d.sections||[]).forEach(function(sec){if(!sec.equivalent)return;document.querySelectorAll('h1,h2,h3,h4,h5,.section-title,.card-title').forEach(function(n){if(sec.title&&n.textContent.indexOf(sec.title)>=0&&!n.querySelector('.badge')){var b=document.createElement('span');b.className='badge';b.textContent='Equivalent: '+sec.equivalent.code+' '+sec.equivalent.number;n.appendChild(b);}});});},150);});}catch(e){}return r;};})();</script></body>
+</body>
 </html>

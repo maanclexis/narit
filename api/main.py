@@ -12,7 +12,7 @@ from fastapi.staticfiles import StaticFiles
 
 from api.db import get_driver, close_driver
 from api.routers import health, statutes, cases, doctrines, procedures, firs
-from api import analyze
+from api import analyze, contribute
 
 
 @asynccontextmanager
@@ -47,6 +47,7 @@ app.include_router(doctrines.router)
 app.include_router(procedures.router)
 app.include_router(firs.router)
 app.include_router(analyze.router)
+app.include_router(contribute.router)
 
 # ── Static Files ───────────────────────────────────────────────────────
 app.mount("/", StaticFiles(directory="static", html=True), name="static")

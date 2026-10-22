@@ -1,6 +1,7 @@
 """NARIT Legal Graph — root entrypoint."""
 
 from api.main import app
+from api.contribute import router as contribute_router
 
 if __name__ == "__main__":
     import uvicorn

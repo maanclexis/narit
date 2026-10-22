@@ -106,7 +106,7 @@ def extract_keywords(facts: str):
 def _query_neo4j(keywords):
     if not keywords: return []
     d=get_driver()
-    cy="""MATCH (s:Section) WHERE any(k IN $kw WHERE toLower(coalesce(s.text,'')) CONTAINS k OR toLower(coalesce(s.title,'')) CONTAINS k) OPTIONAL MATCH (s)-[:MAPS_TO]->(t:Section) OPTIONAL MATCH (c:Case)-[:INTERPRETS]->(s) OPTIONAL MATCH (ct:Case)-[:INTERPRETS]->(t) RETURN s.code AS code, s.number AS number, s.title AS title, t.code AS target_code, t.number AS target_number, coalesce(c.citation, ct.citation) AS case_citation, coalesce(c.title, ct.title) AS case_title, coalesce(c.summary, ct.summary) AS case_summary LIMIT 50"""
+    cy="""MATCH (s:Section) WHERE any(k IN $kw WHERE toLower(coalesce(s.text,'')) CONTAINS k OR toLower(coalesce(s.title,'')) CONTAINS k) OPTIONAL MATCH (s)-[:MAPS_TO]->(t:Section) OPTIONAL MATCH (c:Case)-[:INTERPRETS]->(s) OPTIONAL MATCH (ct:Case)-[:INTERPRETS]->(t) RETURN s.code AS code, s.number AS number, s.title AS title, s.text AS text, t.code AS target_code, t.number AS target_number, coalesce(c.citation, ct.citation) AS case_citation, coalesce(c.title, ct.title) AS case_title, coalesce(c.summary, ct.summary) AS case_summary LIMIT 50"""
     with d.session() as ss: return ss.run(cy,kw=keywords).data()
 
 
@@ -120,7 +120,7 @@ def analyze(req: AnalyzeRequest):
         if not r.get("number"): continue
         k=(r["code"],r["number"])
         if k not in seen:
-            sec={"code":r["code"],"number":r["number"],"title":r.get("title"),"cases":[]}
+            sec={"code":r["code"],"number":r["number"],"title":r.get("title"),"text":r.get("text"),"cases":[]}
             if r.get("target_code") and r.get("target_number"):
                 sec["equivalent"]={"code":r["target_code"],"number":r["target_number"]}
             seen[k]=sec

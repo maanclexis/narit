@@ -26,65 +26,29 @@ class AnalyzeRequest(BaseModel):
     facts: str
 
 
-STOPWORDS = set(
-    """a an the and or but if then of to in on for with by at from as is are was were be been
-    being this that these those i me my we our you your he she it they them their his her its
-    do does did not no so such than too very can will just don should now want like""".split()
-)
-
-
-def _stopword_keywords(facts: str, limit: int = 5):
-    words = re.findall(r"[A-Za-z][A-Za-z\-]{2,}", facts.lower())
-    seen, out = set(), []
-    for w in words:
-        if w in STOPWORDS or w in seen:
-            continue
-        seen.add(w)
-        out.append(w)
-        if len(out) == limit:
-            break
-    return out
-
-
 LLM_PROMPT = (
-    "You are a legal search assistant. Extract the 5 most relevant legal keywords "
-    "from this fact pattern. Return ONLY a comma-separated list, no other text. "
-    "Fact pattern: {facts}"
+    "You are an Indian criminal law expert. Read this fact pattern and extract the "
+    "specific legal concepts (e.g., 'theft', 'cheating', 'assault'). Do not use generic words. "
+    "Return ONLY a comma-separated list of legal concepts. Fact pattern: {facts}"
 )
-
-
-def _call_openai(prompt: str) -> str:
-    from openai import OpenAI
-    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
-    resp = client.chat.completions.create(
-        model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0,
-        max_tokens=60,
-    )
-    return resp.choices[0].message.content or ""
 
 
 def _call_gemini(prompt: str) -> str:
     import google.generativeai as genai
     genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-    model = genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-1.5-flash"))
+    model = genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-1.5-pro"))
     return model.generate_content(prompt).text or ""
 
 
 def _llm_keywords(facts: str, timeout: float = 3.0):
-    """Return list of keywords from LLM, or None if unavailable/failed/timed-out."""
-    prompt = LLM_PROMPT.format(facts=facts)
-    if os.getenv("OPENAI_API_KEY"):
-        fn = _call_openai
-    elif os.getenv("GEMINI_API_KEY"):
-        fn = _call_gemini
-    else:
+    """Return list of keywords from Gemini LLM, or None if unavailable/failed/timed-out."""
+    if not os.getenv("GEMINI_API_KEY"):
         return None
 
+    prompt = LLM_PROMPT.format(facts=facts)
     try:
         with concurrent.futures.ThreadPoolExecutor(max_workers=1) as ex:
-            fut = ex.submit(fn, prompt)
+            fut = ex.submit(_call_gemini, prompt)
             raw = fut.result(timeout=timeout)
     except Exception:
         return None
@@ -97,10 +61,22 @@ def _llm_keywords(facts: str, timeout: float = 3.0):
     return terms[:5] or None
 
 
+def fallback_extract(facts):
+    facts = facts.lower()
+    concepts = []
+    if any(w in facts for w in ["stole", "took", "phone", "motorcycle", "bike", "snatched"]): concepts.append("theft")
+    if any(w in facts for w in ["hit", "stick", "broke", "arm", "punch", "slap", "hurt"]): concepts.append("hurt")
+    if any(w in facts for w in ["tricked", "money", "scam", "fraud", "cheated"]): concepts.append("cheating")
+    return concepts if concepts else [facts]
+
+
 def extract_keywords(facts: str):
     if not facts or not facts.strip():
         return []
-    return _llm_keywords(facts) or _stopword_keywords(facts)
+    llm_res = _llm_keywords(facts)
+    if llm_res:
+        return llm_res
+    return fallback_extract(facts)
 
 
 def _query_neo4j(keywords):

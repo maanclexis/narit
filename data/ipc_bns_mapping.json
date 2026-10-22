@@ -1,0 +1,2817 @@
+[
+  {
+    "ipc": "1",
+    "bns": "1",
+    "title": "Title and extent of operation of the Code"
+  },
+  {
+    "ipc": "2",
+    "bns": "1(3)",
+    "title": "Punishment of offences committed within India"
+  },
+  {
+    "ipc": "3",
+    "bns": "1(4)",
+    "title": "Punishment of offences committed beyond, but which by law may be tried within, India"
+  },
+  {
+    "ipc": "4",
+    "bns": "1(5)",
+    "title": "Extension of Code to extraterritorial offences"
+  },
+  {
+    "ipc": "5",
+    "bns": "1(6)",
+    "title": "Certain laws not to be affected by this Act"
+  },
+  {
+    "ipc": "6",
+    "bns": "3",
+    "title": "Definitions in the Code to be understood subject to exceptions"
+  },
+  {
+    "ipc": "7",
+    "bns": "Repealed in BNS",
+    "title": "Sense of expression once explained"
+  },
+  {
+    "ipc": "8",
+    "bns": "2(10)",
+    "title": "Gender"
+  },
+  {
+    "ipc": "9",
+    "bns": "2(22)",
+    "title": "Number"
+  },
+  {
+    "ipc": "10",
+    "bns": "2(19)",
+    "title": "\u201cMan\u201d, \u201cWoman\u201d"
+  },
+  {
+    "ipc": "11",
+    "bns": "2(35)",
+    "title": "\u201cPerson\u201d"
+  },
+  {
+    "ipc": "12",
+    "bns": "2(26)",
+    "title": "\u201cPublic\u201d"
+  },
+  {
+    "ipc": "13",
+    "bns": "2(27)",
+    "title": "Repealed"
+  },
+  {
+    "ipc": "14",
+    "bns": "2(28)",
+    "title": "\u201cServant of Government\u201d"
+  },
+  {
+    "ipc": "15",
+    "bns": "Repealed in BNS",
+    "title": "Repealed"
+  },
+  {
+    "ipc": "16",
+    "bns": "Repealed in BNS",
+    "title": "Repealed"
+  },
+  {
+    "ipc": "17",
+    "bns": "2(12)",
+    "title": "\u201cGovernment\u201d"
+  },
+  {
+    "ipc": "18",
+    "bns": "Repealed in BNS",
+    "title": "\u201cIndia\u201d"
+  },
+  {
+    "ipc": "19",
+    "bns": "2(16)",
+    "title": "\u201cJudge\u201d"
+  },
+  {
+    "ipc": "20",
+    "bns": "2(5)",
+    "title": "\u201cCourt of Justice\u201d"
+  },
+  {
+    "ipc": "21",
+    "bns": "2(28)",
+    "title": "\u201cPublic servant\u201d"
+  },
+  {
+    "ipc": "22",
+    "bns": "2(21)",
+    "title": "\u201cMovable property\u201d"
+  },
+  {
+    "ipc": "23",
+    "bns": "Repealed in BNS",
+    "title": "\u201cWrongful gain\u201d"
+  },
+  {
+    "ipc": "24",
+    "bns": "2(7)",
+    "title": "Dishonesty"
+  },
+  {
+    "ipc": "25",
+    "bns": "2(9)",
+    "title": "\u201cFraudulently\u201d"
+  },
+  {
+    "ipc": "26",
+    "bns": "2(29)",
+    "title": "\u201cReason to believe\u201d"
+  },
+  {
+    "ipc": "27",
+    "bns": "Repealed in BNS",
+    "title": "Property in possession of wife, clerk or servant"
+  },
+  {
+    "ipc": "28",
+    "bns": "2(4)",
+    "title": "\u201cCounterfeit\u201d"
+  },
+  {
+    "ipc": "29",
+    "bns": "2(8)",
+    "title": "\u201cDocument\u201d"
+  },
+  {
+    "ipc": "29A",
+    "bns": "2(39)",
+    "title": "\u201cElectronic record\u201d"
+  },
+  {
+    "ipc": "30",
+    "bns": "2(31)",
+    "title": "\u201cValuable security\u201d"
+  },
+  {
+    "ipc": "31",
+    "bns": "2(34)",
+    "title": "\u201cA will\u201d"
+  },
+  {
+    "ipc": "32",
+    "bns": "2(1)",
+    "title": "Words referring to acts include illegal omissions"
+  },
+  {
+    "ipc": "33",
+    "bns": "2(1)",
+    "title": "\u201cAct\u201d, \u201cOmission\u201d"
+  },
+  {
+    "ipc": "34",
+    "bns": "3(5)",
+    "title": "Acts done by several persons in furtherance of common intention"
+  },
+  {
+    "ipc": "35",
+    "bns": "3(6)",
+    "title": "When such an act is criminal by reason of its being done with a criminal knowledge or intention"
+  },
+  {
+    "ipc": "36",
+    "bns": "3(7)",
+    "title": "Effect caused partly by act and partly by omission"
+  },
+  {
+    "ipc": "37",
+    "bns": "3(8)",
+    "title": "Cooperation by doing one of several acts constituting an offence"
+  },
+  {
+    "ipc": "38",
+    "bns": "3(9)",
+    "title": "Persons concerned in criminal act may be guilty of different offences"
+  },
+  {
+    "ipc": "39",
+    "bns": "2(33)",
+    "title": "\u201cVoluntarily\u201d"
+  },
+  {
+    "ipc": "40",
+    "bns": "2(24)",
+    "title": "\u201cOffence\u201d"
+  },
+  {
+    "ipc": "41",
+    "bns": "2(30)",
+    "title": "\u201cSpecial law\u201d"
+  },
+  {
+    "ipc": "42",
+    "bns": "2(18)",
+    "title": "\u201cLocal law\u201d"
+  },
+  {
+    "ipc": "43",
+    "bns": "2(15)",
+    "title": "\u201cIllegal\u201d, \u201cLegally bound to do\u201d"
+  },
+  {
+    "ipc": "48",
+    "bns": "2(32)",
+    "title": "\u201cVessel\u201d"
+  },
+  {
+    "ipc": "49",
+    "bns": "2(20)",
+    "title": "\u201cYear\u201d, \u201cMonth\u201d"
+  },
+  {
+    "ipc": "50",
+    "bns": "Repealed in BNS",
+    "title": "\u201cSection\u201d"
+  },
+  {
+    "ipc": "51",
+    "bns": "2(23)",
+    "title": "\u201cOath\u201d"
+  },
+  {
+    "ipc": "52",
+    "bns": "2(11)",
+    "title": "\u201cGood faith\u201d"
+  },
+  {
+    "ipc": "52A",
+    "bns": "2(13)",
+    "title": "\u201cHarbour\u201d"
+  },
+  {
+    "ipc": "53",
+    "bns": "4",
+    "title": "Punishments"
+  },
+  {
+    "ipc": "53A",
+    "bns": "Repealed in BNS",
+    "title": "Construction of reference to transportation"
+  },
+  {
+    "ipc": "54",
+    "bns": "5",
+    "title": "Commutation of sentence of death"
+  },
+  {
+    "ipc": "55",
+    "bns": "5",
+    "title": "Commutation of sentence of imprisonment for life"
+  },
+  {
+    "ipc": "55A",
+    "bns": "5",
+    "title": "Definition of \u201cappropriate Government\u201d"
+  },
+  {
+    "ipc": "56",
+    "bns": "Repealed in BNS",
+    "title": "Sentence of Europeans and Americans to penal servitude. Proviso as to sentence for term exceeding ten years but not for life"
+  },
+  {
+    "ipc": "57",
+    "bns": "6",
+    "title": "Fractions of terms of punishment"
+  },
+  {
+    "ipc": "58",
+    "bns": "Repealed in BNS",
+    "title": "(Repealed) Offenders sentenced to transportation how dealt with until transported"
+  },
+  {
+    "ipc": "59",
+    "bns": "Repealed in BNS",
+    "title": "(Repealed) Transportation instead of imprisonment"
+  },
+  {
+    "ipc": "60",
+    "bns": "7",
+    "title": "Sentence may be (in certain cases of imprisonment) wholly or partly rigorous or simple"
+  },
+  {
+    "ipc": "61",
+    "bns": "Repealed in BNS",
+    "title": "(Repealed) Sentence of forfeiture of property"
+  },
+  {
+    "ipc": "62",
+    "bns": "Repealed in BNS",
+    "title": "(Repealed) Forfeiture of property in respect of offenders punishable with death, transportation or imprisonment"
+  },
+  {
+    "ipc": "63",
+    "bns": "8",
+    "title": "Amount of fine"
+  },
+  {
+    "ipc": "64",
+    "bns": "8",
+    "title": "Sentence of imprisonment for nonpayment of fine"
+  },
+  {
+    "ipc": "65",
+    "bns": "8(3)",
+    "title": "Limit to imprisonment for nonpayment of fine, when imprisonment and fine awardable"
+  },
+  {
+    "ipc": "66",
+    "bns": "8(4), (5)",
+    "title": "Description of imprisonment for nonpayment of fine"
+  },
+  {
+    "ipc": "67",
+    "bns": "8(5)",
+    "title": "Imprisonment for nonpayment of fine when offence punishable with fine only"
+  },
+  {
+    "ipc": "68",
+    "bns": "8(6)",
+    "title": "Imprisonment to terminate on payment of fine"
+  },
+  {
+    "ipc": "69",
+    "bns": "8(6)",
+    "title": "Termination of imprisonment on payment of proportional part of fine"
+  },
+  {
+    "ipc": "70",
+    "bns": "8(7)",
+    "title": "Fine leviable within six years, or during imprisonment \u2013 Death not to discharge property from liability"
+  },
+  {
+    "ipc": "71",
+    "bns": "9",
+    "title": "Limit of punishment of offence made up of several offences"
+  },
+  {
+    "ipc": "72",
+    "bns": "10",
+    "title": "Punishment of person guilty of one of several offences, the judgment stating that it is doubtful of which"
+  },
+  {
+    "ipc": "73",
+    "bns": "11",
+    "title": "Solitary confinement"
+  },
+  {
+    "ipc": "74",
+    "bns": "12",
+    "title": "Limit of solitary confinement"
+  },
+  {
+    "ipc": "75",
+    "bns": "13",
+    "title": "Enhanced punishment for certain offences under Chapter XII or Chapter XVII after previous conviction"
+  },
+  {
+    "ipc": "76",
+    "bns": "14",
+    "title": "Act done by a person bound, or by mistake of fact believing himself bound, by law"
+  },
+  {
+    "ipc": "77",
+    "bns": "15",
+    "title": "Act of Judge when acting judicially"
+  },
+  {
+    "ipc": "78",
+    "bns": "16",
+    "title": "Act done pursuant to the judgment or order of Court"
+  },
+  {
+    "ipc": "79",
+    "bns": "17",
+    "title": "Act done by a person justified, or by mistake of fact believing himself justified, by law"
+  },
+  {
+    "ipc": "80",
+    "bns": "18",
+    "title": "Accident in doing a lawful act"
+  },
+  {
+    "ipc": "81",
+    "bns": "19",
+    "title": "Act likely to cause harm, but done without criminal intent, and to prevent other harm"
+  },
+  {
+    "ipc": "82",
+    "bns": "20",
+    "title": "Act of a child under seven years of age"
+  },
+  {
+    "ipc": "83",
+    "bns": "21",
+    "title": "Act of a child above seven and under twelve of immature understanding"
+  },
+  {
+    "ipc": "84",
+    "bns": "22",
+    "title": "Act of a person of unsound mind"
+  },
+  {
+    "ipc": "85",
+    "bns": "23",
+    "title": "Offence requiring a particular intent or knowledge committed by one who is intoxicated"
+  },
+  {
+    "ipc": "86",
+    "bns": "24",
+    "title": "Offence requiring a particular intent or knowledge committed by one who is intoxicated"
+  },
+  {
+    "ipc": "87",
+    "bns": "25",
+    "title": "Act not intended and not known to be likely to cause death or grievous hurt, done by consent"
+  },
+  {
+    "ipc": "88",
+    "bns": "26",
+    "title": "Act not intended to cause death, done by consent in good faith for person's benefit"
+  },
+  {
+    "ipc": "89",
+    "bns": "27",
+    "title": "Act done in good faith for benefit of child or insane person, by or by consent of guardian"
+  },
+  {
+    "ipc": "90",
+    "bns": "28",
+    "title": "Consent known to be given under fear or misconception"
+  },
+  {
+    "ipc": "91",
+    "bns": "29",
+    "title": "Exclusion of acts which are offences independently of harm caused"
+  },
+  {
+    "ipc": "92",
+    "bns": "30",
+    "title": "Act done in good faith for benefit of a person without consent"
+  },
+  {
+    "ipc": "93",
+    "bns": "31",
+    "title": "Communication made in good faith"
+  },
+  {
+    "ipc": "94",
+    "bns": "32",
+    "title": "Act to which a person is compelled by threats"
+  },
+  {
+    "ipc": "95",
+    "bns": "33",
+    "title": "Act causing slight harm"
+  },
+  {
+    "ipc": "96",
+    "bns": "34",
+    "title": "Things done in private defence"
+  },
+  {
+    "ipc": "97",
+    "bns": "35",
+    "title": "Right of private defence of the body and of property"
+  },
+  {
+    "ipc": "98",
+    "bns": "36",
+    "title": "Right of private defence against the act of a person of unsound mind, etc."
+  },
+  {
+    "ipc": "99",
+    "bns": "37",
+    "title": "Act against which there is no right of private defence"
+  },
+  {
+    "ipc": "100",
+    "bns": "38",
+    "title": "When the right of private defence of the body extends to causing death"
+  },
+  {
+    "ipc": "101",
+    "bns": "39",
+    "title": "When such right extends to causing any harm other than death"
+  },
+  {
+    "ipc": "102",
+    "bns": "40",
+    "title": "Commencement and continuance of the right of private defence of the body"
+  },
+  {
+    "ipc": "103",
+    "bns": "41",
+    "title": "When the right of private defence of property extends to causing death"
+  },
+  {
+    "ipc": "104",
+    "bns": "42",
+    "title": "When such right extends to causing any harm other than death"
+  },
+  {
+    "ipc": "105",
+    "bns": "43",
+    "title": "Commencement and continuance of the right of private defence of property"
+  },
+  {
+    "ipc": "106",
+    "bns": "44",
+    "title": "Right of private defence against deadly assault when there is risk of harm to innocent person"
+  },
+  {
+    "ipc": "107",
+    "bns": "45",
+    "title": "Abetment of a thing"
+  },
+  {
+    "ipc": "108",
+    "bns": "46",
+    "title": "Abettor"
+  },
+  {
+    "ipc": "108A",
+    "bns": "47",
+    "title": "Abetment in India of offences outside India"
+  },
+  {
+    "ipc": "Repealed",
+    "bns": "48",
+    "title": "Repealed"
+  },
+  {
+    "ipc": "109",
+    "bns": "49",
+    "title": "Punishment of abetment if the act abetted is committed in consequence and where no express provision is made for its punishment"
+  },
+  {
+    "ipc": "110",
+    "bns": "50",
+    "title": "Punishment of abetment if person abetted does act with a different intention from that of the abettor"
+  },
+  {
+    "ipc": "111",
+    "bns": "51",
+    "title": "Liability of abettor when one act abetted and for act done"
+  },
+  {
+    "ipc": "112",
+    "bns": "52",
+    "title": "Abettor when liable to cumulative punishment for act abetted and for act done."
+  },
+  {
+    "ipc": "113",
+    "bns": "53",
+    "title": "Liability of abettor for an effect caused by the act abetted different from that intended by the abettor"
+  },
+  {
+    "ipc": "114",
+    "bns": "54",
+    "title": "Abettor present when offence is committed"
+  },
+  {
+    "ipc": "115",
+    "bns": "55",
+    "title": "Abetment of offence punishable with death or imprisonment for life\u2014if the offence not committed"
+  },
+  {
+    "ipc": "116",
+    "bns": "56",
+    "title": "Abetment of offence punishable with imprisonment\u2014if the offence be not committed"
+  },
+  {
+    "ipc": "117",
+    "bns": "57",
+    "title": "Abetting commission of offence by the public or by more than ten persons"
+  },
+  {
+    "ipc": "118",
+    "bns": "58",
+    "title": "Concealing design to commit offence punishable with death or imprisonment for life"
+  },
+  {
+    "ipc": "119",
+    "bns": "59",
+    "title": "Public servant concealing design to commit offence which it is his duty to prevent"
+  },
+  {
+    "ipc": "120",
+    "bns": "60",
+    "title": "Concealing design to commit offence punishable with imprisonment"
+  },
+  {
+    "ipc": "120A",
+    "bns": "61(1)",
+    "title": "Definition of criminal conspiracy"
+  },
+  {
+    "ipc": "120B",
+    "bns": "61(2)",
+    "title": "Punishment of criminal conspiracy"
+  },
+  {
+    "ipc": "121",
+    "bns": "147",
+    "title": "Waging, or attempting to wage war, or abetting waging of war, against the Government of India"
+  },
+  {
+    "ipc": "121A",
+    "bns": "148",
+    "title": "Conspiracy to commit offences punishable by section 121"
+  },
+  {
+    "ipc": "122",
+    "bns": "149",
+    "title": "Collecting arms, etc., with intention of waging war against the Government of India"
+  },
+  {
+    "ipc": "123",
+    "bns": "150",
+    "title": "Concealing with intent to facilitate design to wage war"
+  },
+  {
+    "ipc": "124",
+    "bns": "151",
+    "title": "Assaulting President, Governor, etc., with intent to compel or restrain the exercise of any lawful power"
+  },
+  {
+    "ipc": "124A",
+    "bns": "152",
+    "title": "Sedition"
+  },
+  {
+    "ipc": "125",
+    "bns": "153",
+    "title": "Waging war against any Asiatic power in alliance with the Government of India"
+  },
+  {
+    "ipc": "126",
+    "bns": "154",
+    "title": "Committing depredation on territories of power at peace with the Government of India"
+  },
+  {
+    "ipc": "127",
+    "bns": "155",
+    "title": "Receiving property taken by war or depredation mentioned in sections 125 and 126"
+  },
+  {
+    "ipc": "128",
+    "bns": "156",
+    "title": "Public servant voluntarily allowing prisoner of State or war to escape"
+  },
+  {
+    "ipc": "129",
+    "bns": "157",
+    "title": "Public servant negligently suffering such prisoner to escape"
+  },
+  {
+    "ipc": "130",
+    "bns": "158",
+    "title": "Aiding escape of, rescuing or harbouring such prisoner"
+  },
+  {
+    "ipc": "131",
+    "bns": "159",
+    "title": "Abetting mutiny, attempting to seduce a soldier, sailor or airman from his duty"
+  },
+  {
+    "ipc": "132",
+    "bns": "160",
+    "title": "Abetment of mutiny, if mutiny is committed in consequence thereof"
+  },
+  {
+    "ipc": "133",
+    "bns": "161",
+    "title": "Abetment of assault by soldier, sailor or airman on his superior officer, when in execution of his office"
+  },
+  {
+    "ipc": "134",
+    "bns": "162",
+    "title": "Abetment of such assault, if the assault is committed"
+  },
+  {
+    "ipc": "135",
+    "bns": "163",
+    "title": "Abetment of desertion of soldier, sailor or airman"
+  },
+  {
+    "ipc": "136",
+    "bns": "164",
+    "title": "Harbouring deserter"
+  },
+  {
+    "ipc": "137",
+    "bns": "165",
+    "title": "Deserter concealed on board, merchant vessel through negligence of master"
+  },
+  {
+    "ipc": "138",
+    "bns": "166",
+    "title": "Abetment of act of insubordination by soldier, sailor or airman"
+  },
+  {
+    "ipc": "138A",
+    "bns": "Repealed In BNS",
+    "title": "(Repealed) Application of foregoing sections to the Indian Marine Service."
+  },
+  {
+    "ipc": "139",
+    "bns": "167",
+    "title": "Persons subject to certain Acts"
+  },
+  {
+    "ipc": "140",
+    "bns": "168",
+    "title": "Wearing garb or carrying token used by soldier, sailor or airman"
+  },
+  {
+    "ipc": "141",
+    "bns": "189(1)",
+    "title": "Unlawful assembly"
+  },
+  {
+    "ipc": "142",
+    "bns": "189(2)",
+    "title": "Being member of unlawful assembly"
+  },
+  {
+    "ipc": "143",
+    "bns": "189(3)",
+    "title": "Punishment"
+  },
+  {
+    "ipc": "144",
+    "bns": "189(4)",
+    "title": "Joining unlawful assembly armed with deadly weapon"
+  },
+  {
+    "ipc": "145",
+    "bns": "189(3)(5)",
+    "title": "Joining or continuing in unlawful assembly, knowing it has been commanded to disperse"
+  },
+  {
+    "ipc": "146",
+    "bns": "191(1)",
+    "title": "Rioting"
+  },
+  {
+    "ipc": "147",
+    "bns": "191(2)",
+    "title": "Punishment for rioting"
+  },
+  {
+    "ipc": "148",
+    "bns": "191(3)",
+    "title": "Rioting, armed with deadly weapon"
+  },
+  {
+    "ipc": "149",
+    "bns": "190",
+    "title": "Every member of unlawful assembly guilty of offence committed in prosecution of common object"
+  },
+  {
+    "ipc": "150",
+    "bns": "189(6)",
+    "title": "Hiring, or conniving at hiring, of persons to join unlawful assembly"
+  },
+  {
+    "ipc": "151",
+    "bns": "189(5)",
+    "title": "Knowingly joining or continuing in assembly of five or more persons after it has been commanded to disperse"
+  },
+  {
+    "ipc": "152",
+    "bns": "195",
+    "title": "Assaulting or obstructing public servant when suppressing riot, etc."
+  },
+  {
+    "ipc": "153",
+    "bns": "192",
+    "title": "Wantonly giving provocation with intent to cause riot \u2013 If rioting be committed \u2013 If not committed"
+  },
+  {
+    "ipc": "153A",
+    "bns": "196",
+    "title": "Promoting enmity between different groups on grounds of religion, race, place of birth, residence, language, etc., and doing acts prejudicial to maintenance of harmony"
+  },
+  {
+    "ipc": "153B",
+    "bns": "197",
+    "title": "Imputations, assertions prejudicial to national integration"
+  },
+  {
+    "ipc": "154",
+    "bns": "193(1)",
+    "title": "Owner or occupier of land on which an unlawful assembly is held"
+  },
+  {
+    "ipc": "155",
+    "bns": "193(2)",
+    "title": "Liability of person for whose benefit riot is committed"
+  },
+  {
+    "ipc": "156",
+    "bns": "193(3)",
+    "title": "Liability of agent or owner or occupier for whose benefit riot is committed"
+  },
+  {
+    "ipc": "157",
+    "bns": "189(7)",
+    "title": "Harbouring persons hired for an unlawful assembly"
+  },
+  {
+    "ipc": "158",
+    "bns": "189(8)(9)",
+    "title": "Being hired to take part in an unlawful assembly or riot"
+  },
+  {
+    "ipc": "159",
+    "bns": "194(1)",
+    "title": "Affray"
+  },
+  {
+    "ipc": "160",
+    "bns": "194(2)",
+    "title": "Punishment for committing affray"
+  },
+  {
+    "ipc": "166",
+    "bns": "198",
+    "title": "Public servant disobeying law, with intent to cause injury to any person"
+  },
+  {
+    "ipc": "167",
+    "bns": "201",
+    "title": "Public servant framing an incorrect document with intent to cause injury"
+  },
+  {
+    "ipc": "168",
+    "bns": "202",
+    "title": "Public servant unlawfully engaging in trade"
+  },
+  {
+    "ipc": "169",
+    "bns": "203",
+    "title": "Public servant unlawfully buying or bidding for property"
+  },
+  {
+    "ipc": "170",
+    "bns": "204",
+    "title": "Personating a public servant"
+  },
+  {
+    "ipc": "171",
+    "bns": "205",
+    "title": "Wearing garb or carrying token used by public servant with fraudulent intent"
+  },
+  {
+    "ipc": "171A",
+    "bns": "206",
+    "title": "\u201cCandidate\u201d, \u201celectoral right\u201d defined"
+  },
+  {
+    "ipc": "171B",
+    "bns": "207",
+    "title": "Bribery"
+  },
+  {
+    "ipc": "171C",
+    "bns": "171",
+    "title": "Under influence at elections"
+  },
+  {
+    "ipc": "171D",
+    "bns": "172",
+    "title": "Personation at elections"
+  },
+  {
+    "ipc": "171E",
+    "bns": "173",
+    "title": "Punishment for bribery"
+  },
+  {
+    "ipc": "171F",
+    "bns": "174",
+    "title": "Punishment for undue influence or personation at an election"
+  },
+  {
+    "ipc": "171G",
+    "bns": "175",
+    "title": "False statement in connection with an election"
+  },
+  {
+    "ipc": "171H",
+    "bns": "176",
+    "title": "Illegal payment in connection with an election"
+  },
+  {
+    "ipc": "171I",
+    "bns": "177",
+    "title": "Failure to keep election accounts"
+  },
+  {
+    "ipc": "172",
+    "bns": "206",
+    "title": "Absconding to avoid service of summons or other proceeding"
+  },
+  {
+    "ipc": "173",
+    "bns": "207",
+    "title": "Preventing service of summons or other proceeding, or preventing publication thereof"
+  },
+  {
+    "ipc": "174",
+    "bns": "208",
+    "title": "Nonattendance in obedience to an order from public servant"
+  },
+  {
+    "ipc": "174A",
+    "bns": "209",
+    "title": "Nonappearance in response to a proclamation under section 82 of Act 2 of 1974"
+  },
+  {
+    "ipc": "175",
+    "bns": "210",
+    "title": "Omission to produce document or electronic record to public servant by person, legally bound to produce it"
+  },
+  {
+    "ipc": "176",
+    "bns": "211",
+    "title": "Omission to give notice or information to public servant by person legally bound to give it"
+  },
+  {
+    "ipc": "177",
+    "bns": "212",
+    "title": "Furnishing false information"
+  },
+  {
+    "ipc": "178",
+    "bns": "213",
+    "title": "Refusing oath or affirmation when duly required by public servant to make it"
+  },
+  {
+    "ipc": "179",
+    "bns": "214",
+    "title": "Refusing to answer public servant authorised to question"
+  },
+  {
+    "ipc": "180",
+    "bns": "215",
+    "title": "Refusing to sign statement"
+  },
+  {
+    "ipc": "181",
+    "bns": "216",
+    "title": "False statement on oath or affirmation to public servant or person authorised to administer an oath or affirmation"
+  },
+  {
+    "ipc": "182",
+    "bns": "217",
+    "title": "False information, with intent to cause public servant to use his lawful power to the injury of another person"
+  },
+  {
+    "ipc": "183",
+    "bns": "218",
+    "title": "Resistance to the taking of property by the lawful authority of a public servant"
+  },
+  {
+    "ipc": "184",
+    "bns": "219",
+    "title": "Obstructing sale of property offered for sale by authority of public servant"
+  },
+  {
+    "ipc": "185",
+    "bns": "220",
+    "title": "Illegal purchase or bid for property offered for sale by authority of public servant"
+  },
+  {
+    "ipc": "186",
+    "bns": "221",
+    "title": "Obstructing public servant in discharge of public functions"
+  },
+  {
+    "ipc": "187",
+    "bns": "222",
+    "title": "Omission to assist public servant when bound by law to give assistance"
+  },
+  {
+    "ipc": "188",
+    "bns": "223",
+    "title": "Disobedience to order duly promulgated by public servant"
+  },
+  {
+    "ipc": "189",
+    "bns": "224",
+    "title": "Threat of injury to public servant"
+  },
+  {
+    "ipc": "190",
+    "bns": "225",
+    "title": "Threat of injury to induce person to refrain from applying for protection to public servant"
+  },
+  {
+    "ipc": "191",
+    "bns": "227",
+    "title": "Giving false evidence"
+  },
+  {
+    "ipc": "192",
+    "bns": "228",
+    "title": "Fabricating false evidence"
+  },
+  {
+    "ipc": "193",
+    "bns": "229",
+    "title": "Punishment for false evidence"
+  },
+  {
+    "ipc": "194",
+    "bns": "230",
+    "title": "Giving or fabricating false evidence with intent to procure conviction of capital offence"
+  },
+  {
+    "ipc": "195",
+    "bns": "231",
+    "title": "Giving or fabricating false evidence with intent to procure conviction of offence punishable with imprisonment for life or imprisonment"
+  },
+  {
+    "ipc": "195A",
+    "bns": "232",
+    "title": "Threatening any person to give false evidence"
+  },
+  {
+    "ipc": "196",
+    "bns": "233",
+    "title": "Using evidence known to be false"
+  },
+  {
+    "ipc": "197",
+    "bns": "234",
+    "title": "Issuing or signing false certificate"
+  },
+  {
+    "ipc": "198",
+    "bns": "235",
+    "title": "Using as true a certificate known to be false"
+  },
+  {
+    "ipc": "199",
+    "bns": "236",
+    "title": "False statement made in declaration which is by law receivable as evidence"
+  },
+  {
+    "ipc": "200",
+    "bns": "237",
+    "title": "Using as true such declaration knowing it to be false"
+  },
+  {
+    "ipc": "201",
+    "bns": "238",
+    "title": "Causing disappearance of evidence of offence, or giving false information to screen offender"
+  },
+  {
+    "ipc": "202",
+    "bns": "239",
+    "title": "Intentional omission to give information of offence by person bound to inform"
+  },
+  {
+    "ipc": "203",
+    "bns": "240",
+    "title": "Giving false information respecting an offence committed"
+  },
+  {
+    "ipc": "204",
+    "bns": "241",
+    "title": "Destruction of document or electronic record to prevent its production as evidence"
+  },
+  {
+    "ipc": "205",
+    "bns": "242",
+    "title": "False personation for purpose of act or proceeding in suit or prosecution"
+  },
+  {
+    "ipc": "206",
+    "bns": "243",
+    "title": "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution"
+  },
+  {
+    "ipc": "207",
+    "bns": "244",
+    "title": "Fraudulent claim to property to prevent its seizure as forfeited or in execution"
+  },
+  {
+    "ipc": "208",
+    "bns": "245",
+    "title": "Fraudulently suffering decree for sum not due"
+  },
+  {
+    "ipc": "209",
+    "bns": "246",
+    "title": "Dishonestly making false claim in Court"
+  },
+  {
+    "ipc": "210",
+    "bns": "247",
+    "title": "Fraudulently obtaining decree for sum not due"
+  },
+  {
+    "ipc": "211",
+    "bns": "248",
+    "title": "False charge of offence made with intent to injure"
+  },
+  {
+    "ipc": "212",
+    "bns": "249",
+    "title": "Harbouring offender"
+  },
+  {
+    "ipc": "213",
+    "bns": "250",
+    "title": "Taking gift, etc., to screen an offender from punishment"
+  },
+  {
+    "ipc": "214",
+    "bns": "251",
+    "title": "Offering gift or restoration of property in consideration of screening offender"
+  },
+  {
+    "ipc": "215",
+    "bns": "252",
+    "title": "Taking gift to help to recover stolen property, etc."
+  },
+  {
+    "ipc": "216",
+    "bns": "253",
+    "title": "Harbouring offender who has escaped from custody or whose apprehension has been ordered"
+  },
+  {
+    "ipc": "216A",
+    "bns": "254",
+    "title": "Penalty for harbouring robbers or dacoits"
+  },
+  {
+    "ipc": "216B",
+    "bns": "2(13)",
+    "title": "Definition of \u201charbour\u201d in sections 212, 216 and 216A"
+  },
+  {
+    "ipc": "217",
+    "bns": "255",
+    "title": "Public servant disobeying direction of law with intent to save person from punishment or property from forfeiture"
+  },
+  {
+    "ipc": "218",
+    "bns": "256",
+    "title": "Public servant framing incorrect record or writing with intent to save person from punishment or property from forfeiture"
+  },
+  {
+    "ipc": "219",
+    "bns": "257",
+    "title": "Public servant in judicial proceeding corruptly making report, etc., contrary to law"
+  },
+  {
+    "ipc": "220",
+    "bns": "258",
+    "title": "Commitment for trial or confinement by person having authority who knows that he is acting contrary to law"
+  },
+  {
+    "ipc": "221",
+    "bns": "259",
+    "title": "Intentional omission to apprehend on the part of public servant bound to apprehend"
+  },
+  {
+    "ipc": "222",
+    "bns": "260",
+    "title": "Intentional omission to apprehend on the part of public servant bound to apprehend person under sentence or lawfully committed"
+  },
+  {
+    "ipc": "223",
+    "bns": "261",
+    "title": "Escape from confinement or custody negligently suffered by public servant"
+  },
+  {
+    "ipc": "224",
+    "bns": "262",
+    "title": "Resistance or obstruction by a person to his lawful apprehension"
+  },
+  {
+    "ipc": "225",
+    "bns": "263",
+    "title": "Resistance or obstruction to lawful apprehension of another person"
+  },
+  {
+    "ipc": "225A",
+    "bns": "264",
+    "title": "Omission to apprehend, or sufferance of escape, on part of public servant, in cases not otherwise provided for"
+  },
+  {
+    "ipc": "225B",
+    "bns": "265",
+    "title": "Resistance or obstruction to lawful apprehension, or escape or rescue, in cases not otherwise provided for"
+  },
+  {
+    "ipc": "226",
+    "bns": "Repealed in BNS",
+    "title": "Unlawful return from transportation"
+  },
+  {
+    "ipc": "227",
+    "bns": "266",
+    "title": "Violation of condition of remission of punishment"
+  },
+  {
+    "ipc": "228",
+    "bns": "267",
+    "title": "Intentional insult or interruption to public servant sitting in judicial proceeding"
+  },
+  {
+    "ipc": "228A",
+    "bns": "72",
+    "title": "Disclosure of identity of the victim of certain offences, etc."
+  },
+  {
+    "ipc": "229",
+    "bns": "268",
+    "title": "Personation of a juror or assessor"
+  },
+  {
+    "ipc": "229A",
+    "bns": "269",
+    "title": "Failure by person released on bail or bond to appear in Court"
+  },
+  {
+    "ipc": "230",
+    "bns": "178",
+    "title": "\u201cCoin\u201d defined"
+  },
+  {
+    "ipc": "231",
+    "bns": "178",
+    "title": "Counterfeiting coin"
+  },
+  {
+    "ipc": "232",
+    "bns": "178",
+    "title": "Counterfeiting Indian coin"
+  },
+  {
+    "ipc": "233",
+    "bns": "181",
+    "title": "Making or selling instrument for counterfeiting coin"
+  },
+  {
+    "ipc": "234",
+    "bns": "181",
+    "title": "Making or selling instrument for counterfeiting Indian coin"
+  },
+  {
+    "ipc": "235",
+    "bns": "181",
+    "title": "Possession of instrument, or material for the purpose of using the same for counterfeiting coin"
+  },
+  {
+    "ipc": "236",
+    "bns": "Repealed in BNS",
+    "title": "Abetting in India the counterfeiting out of India of coin"
+  },
+  {
+    "ipc": "237",
+    "bns": "179",
+    "title": "Import or export of counterfeit coin"
+  },
+  {
+    "ipc": "238",
+    "bns": "179",
+    "title": "Import or export of counterfeits of Indian coin"
+  },
+  {
+    "ipc": "239",
+    "bns": "179",
+    "title": "Delivery of coin, possessed with knowledge that it is counterfeit"
+  },
+  {
+    "ipc": "240",
+    "bns": "180",
+    "title": "Delivery of Indian coin, possessed with knowledge that it is counterfeit"
+  },
+  {
+    "ipc": "241",
+    "bns": "Repealed in BNS",
+    "title": "Delivery of coin as genuine, which, when first possessed, the deliverer did not know to be counterfeit"
+  },
+  {
+    "ipc": "242",
+    "bns": "180 Explanation",
+    "title": "Possession of counterfeit coin by person who knew it to be counterfeit when he became possessed thereof"
+  },
+  {
+    "ipc": "243",
+    "bns": "180 Explanation",
+    "title": "Possession of Indian coin by person who knew it to be altered when he became possessed thereof"
+  },
+  {
+    "ipc": "244",
+    "bns": "187",
+    "title": "Person employed in mint causing coin to be of different weight or composition from that fixed by law"
+  },
+  {
+    "ipc": "245",
+    "bns": "188",
+    "title": "Unlawfully taking coining instrument from mint"
+  },
+  {
+    "ipc": "246",
+    "bns": "178(5)",
+    "title": "Fraudulently or dishonestly diminishing weight or altering composition of coin"
+  },
+  {
+    "ipc": "247",
+    "bns": "178(5)",
+    "title": "Fraudulently or dishonestly diminishing weight or altering composition of Indian coin"
+  },
+  {
+    "ipc": "248",
+    "bns": "178(5)",
+    "title": "Altering appearance of coin with intent that it shall pass as coin of different description"
+  },
+  {
+    "ipc": "249",
+    "bns": "178(5)",
+    "title": "Altering appearance of Indian coin with intent that it shall pass as coin of different description"
+  },
+  {
+    "ipc": "250",
+    "bns": "180",
+    "title": "Delivery of coin, possessed with knowledge that it is altered"
+  },
+  {
+    "ipc": "251",
+    "bns": "180",
+    "title": "Delivery of Indian coin, possessed with knowledge that it is altered"
+  },
+  {
+    "ipc": "252",
+    "bns": "180 Explanation",
+    "title": "Possession of coin by person who knew it to be altered when he became possessed thereof"
+  },
+  {
+    "ipc": "255",
+    "bns": "178",
+    "title": "Counterfeiting Government stamp"
+  },
+  {
+    "ipc": "256",
+    "bns": "181",
+    "title": "Having possession of instrument or material for counterfeiting Government stamp"
+  },
+  {
+    "ipc": "257",
+    "bns": "181",
+    "title": "Making or selling instrument for counterfeiting Government stamp"
+  },
+  {
+    "ipc": "258",
+    "bns": "181",
+    "title": "Sale of counterfeit Government stamp"
+  },
+  {
+    "ipc": "259",
+    "bns": "180",
+    "title": "Having possession of counterfeit Government stamp"
+  },
+  {
+    "ipc": "260",
+    "bns": "179",
+    "title": "Using as genuine a Government stamp known to be counterfeit"
+  },
+  {
+    "ipc": "261",
+    "bns": "183",
+    "title": "Effacing, writing fromsubstance bearing Government stamp, or removing fromdocument a stamp used for it,with intent to cause loss toGovernment"
+  },
+  {
+    "ipc": "262",
+    "bns": "184",
+    "title": "Using Government stamp known to have been before used"
+  },
+  {
+    "ipc": "263",
+    "bns": "185",
+    "title": "Erasure of mark denoting that stamp has been used"
+  },
+  {
+    "ipc": "263A",
+    "bns": "186",
+    "title": "Prohibition of fictitious stamps"
+  },
+  {
+    "ipc": "264",
+    "bns": "Repealed in BNS",
+    "title": "Fraudulent use of false instrument for weighing"
+  },
+  {
+    "ipc": "265",
+    "bns": "Repealed in BNS",
+    "title": "Fraudulent use of false weight or measure"
+  },
+  {
+    "ipc": "266",
+    "bns": "Repealed in BNS",
+    "title": "Being in possession of false weight or measure"
+  },
+  {
+    "ipc": "267",
+    "bns": "Repealed in BNS",
+    "title": "Making or selling false weight or measure"
+  },
+  {
+    "ipc": "268",
+    "bns": "270",
+    "title": "Public nuisance"
+  },
+  {
+    "ipc": "269",
+    "bns": "271",
+    "title": "Negligent act likely to spread infection of disease dangerous to life"
+  },
+  {
+    "ipc": "270",
+    "bns": "272",
+    "title": "Malignant Act likely to spread infection of disease dangerous to life"
+  },
+  {
+    "ipc": "271",
+    "bns": "273",
+    "title": "Disobedience to quarantine rule"
+  },
+  {
+    "ipc": "272",
+    "bns": "274",
+    "title": "Adulteration of food or drink intended for sale"
+  },
+  {
+    "ipc": "273",
+    "bns": "275",
+    "title": "Sale of noxious food or drink"
+  },
+  {
+    "ipc": "274",
+    "bns": "276",
+    "title": "Adulteration of drugs"
+  },
+  {
+    "ipc": "275",
+    "bns": "277",
+    "title": "Sale of adulterated drugs"
+  },
+  {
+    "ipc": "276",
+    "bns": "278",
+    "title": "Sale of drug as a different drug or preparation"
+  },
+  {
+    "ipc": "277",
+    "bns": "279",
+    "title": "Fouling water of public spring or reservoir"
+  },
+  {
+    "ipc": "278",
+    "bns": "280",
+    "title": "Making atmosphere noxious to health"
+  },
+  {
+    "ipc": "279",
+    "bns": "281",
+    "title": "Rash driving or riding on a public way"
+  },
+  {
+    "ipc": "280",
+    "bns": "282",
+    "title": "Rash navigation of vessel"
+  },
+  {
+    "ipc": "281",
+    "bns": "283",
+    "title": "Exhibition of false light, mark or buoy"
+  },
+  {
+    "ipc": "282",
+    "bns": "284",
+    "title": "Conveying person by water for hire in unsafe or overloaded vessel"
+  },
+  {
+    "ipc": "283",
+    "bns": "285",
+    "title": "Danger or obstruction in public way or line of navigation"
+  },
+  {
+    "ipc": "284",
+    "bns": "286",
+    "title": "Negligent conduct with respect to poisonous substance"
+  },
+  {
+    "ipc": "285",
+    "bns": "287",
+    "title": "Negligent conduct with respect to fire or combustible matter"
+  },
+  {
+    "ipc": "286",
+    "bns": "288",
+    "title": "Negligent conduct with respect to explosive substance"
+  },
+  {
+    "ipc": "287",
+    "bns": "289",
+    "title": "Negligent conduct with respect to machinery"
+  },
+  {
+    "ipc": "288",
+    "bns": "290",
+    "title": "Negligent conduct with respect to pulling down or repairing buildings, etc."
+  },
+  {
+    "ipc": "289",
+    "bns": "291",
+    "title": "Negligent conduct with respect to animal"
+  },
+  {
+    "ipc": "290",
+    "bns": "292",
+    "title": "Punishment for public nuisance in cases not otherwise provided for"
+  },
+  {
+    "ipc": "291",
+    "bns": "293",
+    "title": "Continuance of nuisance after injunction to discontinue"
+  },
+  {
+    "ipc": "292",
+    "bns": "294",
+    "title": "Sale, etc., of obscene books, etc."
+  },
+  {
+    "ipc": "293",
+    "bns": "295",
+    "title": "Sale, etc., of obscene objects to young person"
+  },
+  {
+    "ipc": "294",
+    "bns": "296",
+    "title": "Obscene acts and songs"
+  },
+  {
+    "ipc": "294A",
+    "bns": "297",
+    "title": "Keeping lottery office"
+  },
+  {
+    "ipc": "295",
+    "bns": "298",
+    "title": "Injuring or defiling place of worship with intent to insult the religion of any class"
+  },
+  {
+    "ipc": "295A",
+    "bns": "299",
+    "title": "Deliberate and malicious acts, intended to outrage religious feelings of any class by insulting its religion or religious beliefs"
+  },
+  {
+    "ipc": "296",
+    "bns": "300",
+    "title": "Disturbing religious assembly"
+  },
+  {
+    "ipc": "297",
+    "bns": "301",
+    "title": "Trespassing on burial places, etc."
+  },
+  {
+    "ipc": "298",
+    "bns": "302",
+    "title": "Uttering words, etc., with deliberate intent to wound the religious feelings of any person"
+  },
+  {
+    "ipc": "299",
+    "bns": "100",
+    "title": "Culpable homicide"
+  },
+  {
+    "ipc": "300",
+    "bns": "101",
+    "title": "Murder"
+  },
+  {
+    "ipc": "301",
+    "bns": "102",
+    "title": "Culpable homicide by causing death of person other than person whose death was intended"
+  },
+  {
+    "ipc": "302",
+    "bns": "103",
+    "title": "Punishment for murder"
+  },
+  {
+    "ipc": "303",
+    "bns": "104",
+    "title": "Punishment for murder by lifeconvict"
+  },
+  {
+    "ipc": "304",
+    "bns": "105",
+    "title": "Punishment for culpable homicide not amounting to murder"
+  },
+  {
+    "ipc": "304A",
+    "bns": "106",
+    "title": "Causing death by negligence"
+  },
+  {
+    "ipc": "304B",
+    "bns": "80",
+    "title": "Dowry death"
+  },
+  {
+    "ipc": "305",
+    "bns": "107",
+    "title": "Abetment of suicide of child or insane person"
+  },
+  {
+    "ipc": "306",
+    "bns": "108",
+    "title": "Abetment of suicide"
+  },
+  {
+    "ipc": "307",
+    "bns": "109",
+    "title": "Attempt to murder"
+  },
+  {
+    "ipc": "308",
+    "bns": "110",
+    "title": "Attempt to commit culpable homicide"
+  },
+  {
+    "ipc": "309",
+    "bns": "226",
+    "title": "Attempt to commit suicide"
+  },
+  {
+    "ipc": "310",
+    "bns": "Repealed in BNS",
+    "title": "Thug"
+  },
+  {
+    "ipc": "311",
+    "bns": "Repealed in BNS",
+    "title": "Punishment"
+  },
+  {
+    "ipc": "312",
+    "bns": "88",
+    "title": "Causing miscarriage"
+  },
+  {
+    "ipc": "313",
+    "bns": "89",
+    "title": "Causing miscarriage without woman\u2019s consent"
+  },
+  {
+    "ipc": "314",
+    "bns": "90",
+    "title": "Death caused by act done with intent to cause miscarriage"
+  },
+  {
+    "ipc": "315",
+    "bns": "91",
+    "title": "Act done with intent to prevent child being born alive or to cause it to die after birth"
+  },
+  {
+    "ipc": "316",
+    "bns": "92",
+    "title": "Causing death of quick unborn"
+  },
+  {
+    "ipc": "317",
+    "bns": "93",
+    "title": "Exposure and abandonment of child under twelve years, by parent or person having care of it"
+  },
+  {
+    "ipc": "318",
+    "bns": "94",
+    "title": "Exposure and abandonment of child under twelve years, by parent or person having care of it"
+  },
+  {
+    "ipc": "319",
+    "bns": "114",
+    "title": "Hurt"
+  },
+  {
+    "ipc": "320",
+    "bns": "116",
+    "title": "Grievous hurt"
+  },
+  {
+    "ipc": "321",
+    "bns": "115(1)",
+    "title": "Voluntarily causing hurt"
+  },
+  {
+    "ipc": "322",
+    "bns": "117(1)",
+    "title": "Voluntarily causing grievous hurt"
+  },
+  {
+    "ipc": "323",
+    "bns": "115(2)",
+    "title": "Punishment for voluntarily causing hurt"
+  },
+  {
+    "ipc": "324",
+    "bns": "118(1)",
+    "title": "Voluntarily causing hurt by dangerous weapons or means"
+  },
+  {
+    "ipc": "325",
+    "bns": "117(2)",
+    "title": "Punishment for voluntarily causing grievous hurt"
+  },
+  {
+    "ipc": "326",
+    "bns": "118",
+    "title": "Voluntarily causing grievous hurt by dangerous weapons or means"
+  },
+  {
+    "ipc": "326A",
+    "bns": "124(1)",
+    "title": "Voluntarily causing grievous hurt by use of acid, etc."
+  },
+  {
+    "ipc": "326B",
+    "bns": "124(2)",
+    "title": "Voluntarily throwing or attempting to throw acid"
+  },
+  {
+    "ipc": "327",
+    "bns": "119",
+    "title": "Voluntarily causing hurt to extort property, or to constrain to an illegal act"
+  },
+  {
+    "ipc": "328",
+    "bns": "123",
+    "title": "Causing hurt by means of poison, etc., with intent to commit an offence"
+  },
+  {
+    "ipc": "329",
+    "bns": "119",
+    "title": "Voluntarily causing grievous hurt to extort property, or to constrain to an illegal act"
+  },
+  {
+    "ipc": "330",
+    "bns": "120",
+    "title": "Voluntarily causing hurt to extort confession, or to compel restoration of property"
+  },
+  {
+    "ipc": "331",
+    "bns": "120",
+    "title": "Voluntarily causing grievous hurt to extort confession, or to compel restoration of property"
+  },
+  {
+    "ipc": "332",
+    "bns": "121",
+    "title": "Voluntarily causing hurt to deter public servant from his duty"
+  },
+  {
+    "ipc": "333",
+    "bns": "121",
+    "title": "Voluntarily causing grievous hurt to deter public servant from his duty"
+  },
+  {
+    "ipc": "334",
+    "bns": "122",
+    "title": "Voluntarily causing hurt on provocation"
+  },
+  {
+    "ipc": "335",
+    "bns": "122",
+    "title": "Voluntarily causing grievous hurt on provocation"
+  },
+  {
+    "ipc": "336",
+    "bns": "125",
+    "title": "Act endangering life or personal safety of others"
+  },
+  {
+    "ipc": "337",
+    "bns": "125",
+    "title": "Causing hurt by act endangering life or personal safety of others"
+  },
+  {
+    "ipc": "338",
+    "bns": "125",
+    "title": "Causing grievous hurt by act endangering life or personal safety of others"
+  },
+  {
+    "ipc": "339",
+    "bns": "126",
+    "title": "Wrongful restraint"
+  },
+  {
+    "ipc": "340",
+    "bns": "127",
+    "title": "Wrongful confinement"
+  },
+  {
+    "ipc": "341",
+    "bns": "127",
+    "title": "Punishment for wrongful restraint"
+  },
+  {
+    "ipc": "342",
+    "bns": "127",
+    "title": "Punishment for wrongful confinement"
+  },
+  {
+    "ipc": "343",
+    "bns": "127",
+    "title": "Wrongful confinement for three or more days"
+  },
+  {
+    "ipc": "344",
+    "bns": "127",
+    "title": "Wrongful confinement for ten or more days"
+  },
+  {
+    "ipc": "345",
+    "bns": "127",
+    "title": "Wrongful confinement of person for whose liberation writ has been issued"
+  },
+  {
+    "ipc": "346",
+    "bns": "127",
+    "title": "Wrongful confinement in secret"
+  },
+  {
+    "ipc": "347",
+    "bns": "127",
+    "title": "Wrongful confinement to extort property, or constrain to illegal act"
+  },
+  {
+    "ipc": "348",
+    "bns": "127",
+    "title": "Wrongful confinement to extort confession, or compel restoration of property"
+  },
+  {
+    "ipc": "349",
+    "bns": "128",
+    "title": "Force"
+  },
+  {
+    "ipc": "350",
+    "bns": "129",
+    "title": "Criminal force"
+  },
+  {
+    "ipc": "351",
+    "bns": "130",
+    "title": "Assault"
+  },
+  {
+    "ipc": "352",
+    "bns": "131",
+    "title": "Punishment for assault or criminal force otherwise than on grave provocation"
+  },
+  {
+    "ipc": "353",
+    "bns": "132",
+    "title": "Assault or criminal force to deter public servant from discharge of his duty"
+  },
+  {
+    "ipc": "354",
+    "bns": "74",
+    "title": "Assault or criminal force to woman with intent to outrage her modesty"
+  },
+  {
+    "ipc": "354A",
+    "bns": "75",
+    "title": "Sexual harassment and punishment for sexual harassment"
+  },
+  {
+    "ipc": "354B",
+    "bns": "76",
+    "title": "Assault or use of criminal force to woman with intent to disrobe"
+  },
+  {
+    "ipc": "354C",
+    "bns": "77",
+    "title": "Voyeurism"
+  },
+  {
+    "ipc": "354D",
+    "bns": "78",
+    "title": "Stalking"
+  },
+  {
+    "ipc": "355",
+    "bns": "133",
+    "title": "Assault or criminal force with intent to dishonour person, otherwise than on grave provocation"
+  },
+  {
+    "ipc": "356",
+    "bns": "134",
+    "title": "Assault or criminal force in attempt to commit theft of property carried by a person"
+  },
+  {
+    "ipc": "357",
+    "bns": "135",
+    "title": "Assault or criminal force in attempt wrongfully to confine a person"
+  },
+  {
+    "ipc": "358",
+    "bns": "136",
+    "title": "Assault or criminal force on grave provocation"
+  },
+  {
+    "ipc": "359",
+    "bns": "137",
+    "title": "Kidnapping"
+  },
+  {
+    "ipc": "360",
+    "bns": "137",
+    "title": "Kidnapping from India"
+  },
+  {
+    "ipc": "361",
+    "bns": "137",
+    "title": "Kidnapping from lawful guardianship"
+  },
+  {
+    "ipc": "362",
+    "bns": "138",
+    "title": "Abduction"
+  },
+  {
+    "ipc": "363",
+    "bns": "137(2)",
+    "title": "Punishment for kidnapping"
+  },
+  {
+    "ipc": "363A",
+    "bns": "139",
+    "title": "Kidnapping or maiming a minor for purposes of begging"
+  },
+  {
+    "ipc": "364",
+    "bns": "140",
+    "title": "Kidnapping or abducting in order to murder"
+  },
+  {
+    "ipc": "364A",
+    "bns": "140",
+    "title": "Kidnapping for ransom, etc."
+  },
+  {
+    "ipc": "365",
+    "bns": "140(3)",
+    "title": "Kidnapping or abducting with intent secretly and wrongfully to confine person"
+  },
+  {
+    "ipc": "366",
+    "bns": "87",
+    "title": "Kidnapping, abducting or inducing woman to compel her marriage, etc."
+  },
+  {
+    "ipc": "366A",
+    "bns": "96",
+    "title": "Procurement of minor girl"
+  },
+  {
+    "ipc": "366B",
+    "bns": "141",
+    "title": "Importation of girl from foreign country"
+  },
+  {
+    "ipc": "367",
+    "bns": "140",
+    "title": "Kidnapping or abducting in order to subject person to grievous hurt, slavery, etc."
+  },
+  {
+    "ipc": "368",
+    "bns": "140(2)",
+    "title": "Wrongfully concealing or keeping in confinement, kidnapped or abducted person"
+  },
+  {
+    "ipc": "369",
+    "bns": "97",
+    "title": "Kidnapping or abducting child under ten years with intent to steal from its person"
+  },
+  {
+    "ipc": "370",
+    "bns": "143",
+    "title": "Trafficking of person"
+  },
+  {
+    "ipc": "370A",
+    "bns": "144",
+    "title": "Exploitation of a trafficked person"
+  },
+  {
+    "ipc": "371",
+    "bns": "145",
+    "title": "Habitual dealing in slaves"
+  },
+  {
+    "ipc": "372",
+    "bns": "98",
+    "title": "Selling minor for purposes of prostitution, etc."
+  },
+  {
+    "ipc": "373",
+    "bns": "99",
+    "title": "Buying minor for purposes of prostitution, etc."
+  },
+  {
+    "ipc": "374",
+    "bns": "146",
+    "title": "Unlawful compulsory labour"
+  },
+  {
+    "ipc": "375",
+    "bns": "63",
+    "title": "Rape"
+  },
+  {
+    "ipc": "376",
+    "bns": "64",
+    "title": "Punishment for rape"
+  },
+  {
+    "ipc": "376A",
+    "bns": "66",
+    "title": "Punishment for causing death or resulting in persistent vegetative state of victim"
+  },
+  {
+    "ipc": "376AB",
+    "bns": "65(2)",
+    "title": "Punishment for rape on woman under twelve years of age"
+  },
+  {
+    "ipc": "376B",
+    "bns": "67",
+    "title": "Sexual intercourse by husband upon his wife during separation"
+  },
+  {
+    "ipc": "376C",
+    "bns": "68",
+    "title": "Sexual intercourse by a person in authority"
+  },
+  {
+    "ipc": "376D",
+    "bns": "70",
+    "title": "Gang rape"
+  },
+  {
+    "ipc": "376DA",
+    "bns": "70",
+    "title": "Punishment for gang rape on woman under sixteen years of age"
+  },
+  {
+    "ipc": "376DB",
+    "bns": "70",
+    "title": "Punishment for gang rape on woman under twelve years of age2"
+  },
+  {
+    "ipc": "376E",
+    "bns": "71",
+    "title": "Punishment for repeat offenders"
+  },
+  {
+    "ipc": "377",
+    "bns": "Repealed in BNS",
+    "title": "Unnatural offences"
+  },
+  {
+    "ipc": "378",
+    "bns": "303(1)",
+    "title": "Theft"
+  },
+  {
+    "ipc": "379",
+    "bns": "303",
+    "title": "Punishment for theft"
+  },
+  {
+    "ipc": "379A",
+    "bns": "304",
+    "title": "Snatching"
+  },
+  {
+    "ipc": "379B",
+    "bns": "304",
+    "title": "Punishment for Snatching"
+  },
+  {
+    "ipc": "380",
+    "bns": "305",
+    "title": "Theft in dwelling house, etc."
+  },
+  {
+    "ipc": "381",
+    "bns": "306",
+    "title": "Theft by clerk or servant of property in possession of master"
+  },
+  {
+    "ipc": "382",
+    "bns": "307",
+    "title": "Theft after preparation made for causing death, hurt or restraint in order to the committing of the theft"
+  },
+  {
+    "ipc": "383",
+    "bns": "308",
+    "title": "Extortion"
+  },
+  {
+    "ipc": "384",
+    "bns": "308(2)",
+    "title": "Punishment for extortion"
+  },
+  {
+    "ipc": "385",
+    "bns": "308(3)",
+    "title": "Putting person in fear of injury in order to commit extortion"
+  },
+  {
+    "ipc": "386",
+    "bns": "308(4)",
+    "title": "Extortion by putting a person in fear of death or grievous hurt"
+  },
+  {
+    "ipc": "387",
+    "bns": "308(5)",
+    "title": "Putting person in fear of death or of grievous hurt, in order to commit extortion"
+  },
+  {
+    "ipc": "388",
+    "bns": "308(6)",
+    "title": "Extortion by threat of accusation of an offence punishable with death or imprisonment for life, etc."
+  },
+  {
+    "ipc": "389",
+    "bns": "308(7)",
+    "title": "Putting person in fear of accusation of offence, in order to commit extortion"
+  },
+  {
+    "ipc": "390",
+    "bns": "309",
+    "title": "Robbery"
+  },
+  {
+    "ipc": "391",
+    "bns": "310",
+    "title": "Dacoity"
+  },
+  {
+    "ipc": "392",
+    "bns": "309",
+    "title": "Punishment for robbery"
+  },
+  {
+    "ipc": "393",
+    "bns": "309",
+    "title": "Attempt to commit robbery"
+  },
+  {
+    "ipc": "394",
+    "bns": "309",
+    "title": "Voluntarily causing hurt in committing robbery"
+  },
+  {
+    "ipc": "395",
+    "bns": "310",
+    "title": "Punishment for dacoity"
+  },
+  {
+    "ipc": "396",
+    "bns": "310(3)",
+    "title": "Dacoity with murder"
+  },
+  {
+    "ipc": "397",
+    "bns": "311",
+    "title": "Robbery, or dacoity, with attempt to cause death or grievous hurt"
+  },
+  {
+    "ipc": "398",
+    "bns": "312",
+    "title": "Attempt to commit robbery or dacoity when armed with deadly weapon"
+  },
+  {
+    "ipc": "399",
+    "bns": "310(4)",
+    "title": "Making preparation to commit dacoity"
+  },
+  {
+    "ipc": "400",
+    "bns": "313",
+    "title": "Punishment for belonging to gang of dacoits"
+  },
+  {
+    "ipc": "401",
+    "bns": "313",
+    "title": "Punishment for belonging to gang of thieves"
+  },
+  {
+    "ipc": "402",
+    "bns": "310(5)",
+    "title": "Assembling for purpose of committing dacoity"
+  },
+  {
+    "ipc": "403",
+    "bns": "316",
+    "title": "Dishonest misappropriation of property"
+  },
+  {
+    "ipc": "404",
+    "bns": "315",
+    "title": "Dishonest misappropriation of property possessed by deceased person at the time of his death"
+  },
+  {
+    "ipc": "405",
+    "bns": "316",
+    "title": "Criminal breach of trust"
+  },
+  {
+    "ipc": "406",
+    "bns": "316(2)",
+    "title": "Punishment for criminal breach of trust"
+  },
+  {
+    "ipc": "407",
+    "bns": "316(3)",
+    "title": "Criminal breach of trust by carrier, etc."
+  },
+  {
+    "ipc": "408",
+    "bns": "316(4)",
+    "title": "Criminal breach of trust by clerk or servant"
+  },
+  {
+    "ipc": "409",
+    "bns": "316(5)",
+    "title": "Criminal breach of trust by public servant, or by banker, merchant or agent"
+  },
+  {
+    "ipc": "410",
+    "bns": "317(1)",
+    "title": "Stolen property"
+  },
+  {
+    "ipc": "411",
+    "bns": "317(2)",
+    "title": "Dishonestly receiving stolen property"
+  },
+  {
+    "ipc": "412",
+    "bns": "317(3)",
+    "title": "Dishonestly receiving property stolen in the commission of a dacoity"
+  },
+  {
+    "ipc": "413",
+    "bns": "317(4)",
+    "title": "Habitually dealing in stolen property"
+  },
+  {
+    "ipc": "414",
+    "bns": "317(5)",
+    "title": "Assisting in concealment of stolen property"
+  },
+  {
+    "ipc": "415",
+    "bns": "318",
+    "title": "Cheating"
+  },
+  {
+    "ipc": "416",
+    "bns": "319",
+    "title": "Cheating by personation"
+  },
+  {
+    "ipc": "417",
+    "bns": "318(2)",
+    "title": "Punishment for cheating"
+  },
+  {
+    "ipc": "418",
+    "bns": "318(3)",
+    "title": "Cheating with knowledge that wrongful loss may ensue to person whose interest offender is bound to protect"
+  },
+  {
+    "ipc": "419",
+    "bns": "319(2)",
+    "title": "Punishment for cheating by personation"
+  },
+  {
+    "ipc": "420",
+    "bns": "318(4)",
+    "title": "Cheating and dishonestly inducing delivery of property"
+  },
+  {
+    "ipc": "421",
+    "bns": "320",
+    "title": "Dishonest or fraudulent removal or concealment of property to prevent distribution among creditors"
+  },
+  {
+    "ipc": "422",
+    "bns": "321",
+    "title": "Dishonestly or fraudulently preventing debt being available for creditors"
+  },
+  {
+    "ipc": "423",
+    "bns": "322",
+    "title": "Dishonest or fraudulent execution of deed of transfer containing false statement of consideration"
+  },
+  {
+    "ipc": "424",
+    "bns": "323",
+    "title": "Dishonest or fraudulent removal or concealment of property"
+  },
+  {
+    "ipc": "425",
+    "bns": "324",
+    "title": "Mischief"
+  },
+  {
+    "ipc": "426",
+    "bns": "324",
+    "title": "Punishment for mischief"
+  },
+  {
+    "ipc": "427",
+    "bns": "324",
+    "title": "Mischief causing damage to the amount of fifty rupees"
+  },
+  {
+    "ipc": "428",
+    "bns": "325",
+    "title": "Mischief by killing or maiming animal of the value of ten rupees"
+  },
+  {
+    "ipc": "429",
+    "bns": "325",
+    "title": "Mischief by killing or maiming cattle, etc., of any value or any animal of the value of fifty rupees"
+  },
+  {
+    "ipc": "430",
+    "bns": "326(a)",
+    "title": "Mischief by injury to works of irrigation or by wrongfully diverting water"
+  },
+  {
+    "ipc": "431",
+    "bns": "326(b)",
+    "title": "Mischief by injury to public road, bridge, river or channel"
+  },
+  {
+    "ipc": "432",
+    "bns": "326(c)",
+    "title": "Mischief by causing inundation or obstruction to public drainage attended with damage"
+  },
+  {
+    "ipc": "433",
+    "bns": "326(d)",
+    "title": "Mischief by destroying, moving or rendering less useful a lighthouse or seamark"
+  },
+  {
+    "ipc": "434",
+    "bns": "326(e)",
+    "title": "Mischief by destroying or moving, etc., a landmark fixed by public authority"
+  },
+  {
+    "ipc": "435",
+    "bns": "326(f)",
+    "title": "Mischief by fire or explosive substance with intent to cause damage to amount of one hundred or (in case of agricultural produce) ten rupees"
+  },
+  {
+    "ipc": "436",
+    "bns": "326(g)",
+    "title": "Mischief by fire or explosive substance with intent to destroy house, etc."
+  },
+  {
+    "ipc": "437",
+    "bns": "327(1)",
+    "title": "Mischief with intent to destroy or make unsafe a decked vessel or one of twenty tons burden"
+  },
+  {
+    "ipc": "438",
+    "bns": "327(2)",
+    "title": "Punishment for the mischief described in section 437 committed by fire or explosive substance"
+  },
+  {
+    "ipc": "439",
+    "bns": "328",
+    "title": "Punishment for intentionally running vessel aground or ashore with intent to commit theft, etc."
+  },
+  {
+    "ipc": "440",
+    "bns": "324(6)",
+    "title": "Mischief committed after preparation made for causing death or hurt"
+  },
+  {
+    "ipc": "441",
+    "bns": "329",
+    "title": "Criminal trespass"
+  },
+  {
+    "ipc": "442",
+    "bns": "330",
+    "title": "Housetrespass"
+  },
+  {
+    "ipc": "443",
+    "bns": "331",
+    "title": "Lurking housetrespass"
+  },
+  {
+    "ipc": "444",
+    "bns": "331",
+    "title": "Lurking housetrespass by night"
+  },
+  {
+    "ipc": "445",
+    "bns": "330",
+    "title": "Housebreaking"
+  },
+  {
+    "ipc": "446",
+    "bns": "331",
+    "title": "Housebreaking by night"
+  },
+  {
+    "ipc": "447",
+    "bns": "329(3)",
+    "title": "Punishment for criminal trespass"
+  },
+  {
+    "ipc": "448",
+    "bns": "331",
+    "title": "Punishment for housetrespass"
+  },
+  {
+    "ipc": "449",
+    "bns": "332(a)",
+    "title": "Housetrespass in order to commit offence punishable with death"
+  },
+  {
+    "ipc": "450",
+    "bns": "332(b)",
+    "title": "Housetrespass in order to commit offence punishable with imprisonment for life"
+  },
+  {
+    "ipc": "451",
+    "bns": "332(c)",
+    "title": "Housetrespass in order to commit offence punishable with imprisonment"
+  },
+  {
+    "ipc": "452",
+    "bns": "333",
+    "title": "Housetrespass after preparation for hurt, assault or wrongful restraint"
+  },
+  {
+    "ipc": "453",
+    "bns": "331",
+    "title": "Punishment for lurking housetrespass or housebreaking"
+  },
+  {
+    "ipc": "454",
+    "bns": "331(3)",
+    "title": "Lurking housetrespass or housebreaking in order to commit offence punishable with imprisonment"
+  },
+  {
+    "ipc": "455",
+    "bns": "331(3)",
+    "title": "Lurking housetrespass or housebreaking in order to commit offence punishable with imprisonment for life"
+  },
+  {
+    "ipc": "456",
+    "bns": "331(2, 4)",
+    "title": "Punishment for lurking housetrespass or housebreaking by night"
+  },
+  {
+    "ipc": "457",
+    "bns": "331(2, 4)",
+    "title": "Lurking housetrespass or housebreaking by night in order to commit offence punishable with imprisonment"
+  },
+  {
+    "ipc": "458",
+    "bns": "331",
+    "title": "Lurking housetrespass or housebreaking by night after preparation for hurt, assault, or wrongful restraint"
+  },
+  {
+    "ipc": "459",
+    "bns": "332",
+    "title": "Grievous hurt caused whilst committing lurking housetrespass or housebreaking"
+  },
+  {
+    "ipc": "460",
+    "bns": "331(8)",
+    "title": "All persons jointly concerned in lurking housetrespass or housebreaking by night punishable where death or grievous hurt caused by one of them"
+  },
+  {
+    "ipc": "461",
+    "bns": "334",
+    "title": "Dishonestly breaking open receptacle containing property"
+  },
+  {
+    "ipc": "462",
+    "bns": "334",
+    "title": "Punishment for same offence when committed by person entrusted with custody"
+  },
+  {
+    "ipc": "463",
+    "bns": "336(1)",
+    "title": "Forgery"
+  },
+  {
+    "ipc": "464",
+    "bns": "335",
+    "title": "Making a false document"
+  },
+  {
+    "ipc": "465",
+    "bns": "336(1)",
+    "title": "Punishment for forgery"
+  },
+  {
+    "ipc": "466",
+    "bns": "337",
+    "title": "Forgery of record of Court or of public register, etc."
+  },
+  {
+    "ipc": "467",
+    "bns": "338",
+    "title": "Forgery of valuable security, will, etc."
+  },
+  {
+    "ipc": "468",
+    "bns": "336(2)",
+    "title": "Forgery for purpose of cheating"
+  },
+  {
+    "ipc": "469",
+    "bns": "336(3)",
+    "title": "Forgery for purpose of harming reputation"
+  },
+  {
+    "ipc": "470",
+    "bns": "340",
+    "title": "Forged document"
+  },
+  {
+    "ipc": "471",
+    "bns": "340",
+    "title": "Using as genuine a forged document"
+  },
+  {
+    "ipc": "472",
+    "bns": "341",
+    "title": "Making or possessing counterfeit seal, etc., with intent to commit forgery punishable under section 467"
+  },
+  {
+    "ipc": "473",
+    "bns": "341(2)",
+    "title": "Counterfeit seal, etc., with intent to commit forgery punishable otherwise"
+  },
+  {
+    "ipc": "474",
+    "bns": "339",
+    "title": "Having possession of document described in section 466 or 467, knowing it to be forged and intending to use it as genuine"
+  },
+  {
+    "ipc": "475",
+    "bns": "342(1)",
+    "title": "Counterfeiting device or mark used for authenticating documents other than those described in section 467, or possessing counterfeit marked material"
+  },
+  {
+    "ipc": "476",
+    "bns": "342(2)",
+    "title": "Counterfeiting device or mark used for authenticating documents described in section 467, or possessing counterfeit marked material"
+  },
+  {
+    "ipc": "477",
+    "bns": "343",
+    "title": "Fraudulent cancellation, destruction, etc., of will, authority to adopt, or valuable security"
+  },
+  {
+    "ipc": "477A",
+    "bns": "344",
+    "title": "Falsification of accounts"
+  },
+  {
+    "ipc": "478",
+    "bns": "Repealed in BNS",
+    "title": "Repeal"
+  },
+  {
+    "ipc": "479",
+    "bns": "345(1)",
+    "title": "Property mark"
+  },
+  {
+    "ipc": "480",
+    "bns": "Repealed in BNS",
+    "title": "Repeal"
+  },
+  {
+    "ipc": "481",
+    "bns": "345(2)",
+    "title": "Using a false property mark"
+  },
+  {
+    "ipc": "482",
+    "bns": "345(2)",
+    "title": "Punishment for using a false property mark"
+  },
+  {
+    "ipc": "483",
+    "bns": "347(1)",
+    "title": "Counterfeiting a property mark used by a public servant"
+  },
+  {
+    "ipc": "484",
+    "bns": "347(2)",
+    "title": "Counterfeiting a mark used by a public servant"
+  },
+  {
+    "ipc": "485",
+    "bns": "348",
+    "title": "Making or possession of any instrument for counterfeiting a property mark"
+  },
+  {
+    "ipc": "486",
+    "bns": "349",
+    "title": "Selling goods marked with a counterfeit property mark"
+  },
+  {
+    "ipc": "487",
+    "bns": "350",
+    "title": "Making a false mark upon any receptacle containing goods"
+  },
+  {
+    "ipc": "488",
+    "bns": "351",
+    "title": "Punishment for making use of any such false mark"
+  },
+  {
+    "ipc": "489",
+    "bns": "352",
+    "title": "Tampering with property mark with intent to cause injury"
+  },
+  {
+    "ipc": "489A",
+    "bns": "178",
+    "title": "Counterfeiting currencynotes or banknotes"
+  },
+  {
+    "ipc": "489B",
+    "bns": "179",
+    "title": "Using as genuine, forged or counterfeit currencynotes or banknotes"
+  },
+  {
+    "ipc": "489C",
+    "bns": "180",
+    "title": "Possession of forged or counterfeit currencynotes or banknotes"
+  },
+  {
+    "ipc": "489D",
+    "bns": "181",
+    "title": "Making or possessing instruments or materials for forging or counterfeiting currencynotes or banknotes"
+  },
+  {
+    "ipc": "489E",
+    "bns": "182",
+    "title": "Making or using documents resembling currencynotes or banknotes"
+  },
+  {
+    "ipc": "490",
+    "bns": "Repealed in BNS",
+    "title": "Repealed"
+  },
+  {
+    "ipc": "491",
+    "bns": "357",
+    "title": "Breach of contract to attend on and supply wants of helpless person"
+  },
+  {
+    "ipc": "492",
+    "bns": "Repealed in BNS",
+    "title": "Repealed"
+  },
+  {
+    "ipc": "493",
+    "bns": "81",
+    "title": "Cohabitation caused by a man deceitfully inducing a belief of lawful marriage"
+  },
+  {
+    "ipc": "494",
+    "bns": "82(1)",
+    "title": "Marrying again during lifetime of husband or wife"
+  },
+  {
+    "ipc": "495",
+    "bns": "82(2)",
+    "title": "Same offence with concealment of former marriage from person with whom subsequent marriage is contracted"
+  },
+  {
+    "ipc": "496",
+    "bns": "83",
+    "title": "Marriage ceremony fraudulently gone through without lawful marriage"
+  },
+  {
+    "ipc": "497",
+    "bns": "Repealed in BNS",
+    "title": "Adultery"
+  },
+  {
+    "ipc": "498",
+    "bns": "84",
+    "title": "Enticing or taking away or detaining with criminal intent a married woman"
+  },
+  {
+    "ipc": "498A",
+    "bns": "85",
+    "title": "Husband or relative of husband of a woman subjecting her to cruelty"
+  },
+  {
+    "ipc": "499",
+    "bns": "356(1)",
+    "title": "Defamation"
+  },
+  {
+    "ipc": "500",
+    "bns": "356(2)",
+    "title": "Punishment for defamation"
+  },
+  {
+    "ipc": "501",
+    "bns": "356(2)",
+    "title": "Printing or engraving matter known to be defamatory"
+  },
+  {
+    "ipc": "502",
+    "bns": "356(2)",
+    "title": "Sale of printed or engraved substance containing defamatory matter"
+  },
+  {
+    "ipc": "503",
+    "bns": "351(1)",
+    "title": "Criminal intimidation"
+  },
+  {
+    "ipc": "504",
+    "bns": "352",
+    "title": "Intentional insult with intent to provoke breach of the peace"
+  },
+  {
+    "ipc": "505",
+    "bns": "353",
+    "title": "Statements conducing to public mischief"
+  },
+  {
+    "ipc": "506",
+    "bns": "351(2) & (3)",
+    "title": "Punishment for criminal intimidation"
+  },
+  {
+    "ipc": "507",
+    "bns": "351(4)",
+    "title": "Criminal intimidation by an anonymous communication"
+  },
+  {
+    "ipc": "508",
+    "bns": "354",
+    "title": "Act caused by inducing person to believe that he will be rendered an object of the Divine displeasure"
+  },
+  {
+    "ipc": "509",
+    "bns": "79",
+    "title": "Word, gesture or act intended to insult the modesty of a woman"
+  },
+  {
+    "ipc": "510",
+    "bns": "355",
+    "title": "Misconduct in public by a drunken person"
+  },
+  {
+    "ipc": "511",
+    "bns": "62",
+    "title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment"
+  }
+]

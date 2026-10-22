@@ -104,30 +104,26 @@ def extract_keywords(facts: str):
 
 
 def _query_neo4j(keywords):
-    if not keywords:
-        return []
-    driver = get_driver()
-    cypher = """
-    MATCH (s:Section)
-    WHERE any(k IN $kw WHERE toLower(s.text) CONTAINS k OR toLower(s.title) CONTAINS k)
-    RETURN s.id AS id, s.title AS title, s.text AS text
-    LIMIT 25
-    """
-    with driver.session() as session:
-        rows = session.run(cypher, kw=keywords).data()
-    return rows
+    if not keywords: return []
+    d=get_driver()
+    cy="""MATCH (s:Section) WHERE any(k IN $kw WHERE toLower(coalesce(s.text,'')) CONTAINS k OR toLower(coalesce(s.title,'')) CONTAINS k) OPTIONAL MATCH (s)-[:MAPS_TO]->(t:Section) RETURN s.code AS code,s.number AS number,s.title AS title,t.code AS target_code,t.number AS target_number LIMIT 50"""
+    with d.session() as ss: return ss.run(cy,kw=keywords).data()
 
 
 @router.post("/analyze")
 def analyze(req: AnalyzeRequest):
-    keywords = extract_keywords(req.facts)
-    try:
-        sections = _query_neo4j(keywords)
-    except Exception:
-        sections = []
-
-    if not sections:
-        return {"sections": [], "path": [], "status": "no_match"}
-
-    path = [s.get("id") for s in sections]
-    return {"sections": sections, "path": path, "status": "ok"}
+    kw=extract_keywords(req.facts)
+    try: rows=_query_neo4j(kw)
+    except Exception: rows=[]
+    seen={}
+    for r in rows:
+        if not r.get("number"): continue
+        k=(r["code"],r["number"])
+        if k in seen: continue
+        sec={"code":r["code"],"number":r["number"],"title":r.get("title")}
+        if r.get("target_code") and r.get("target_number"):
+            sec["equivalent"]={"code":r["target_code"],"number":r["target_number"]}
+        seen[k]=sec
+    secs=list(seen.values())
+    if not secs: return {"sections":[],"path":[],"status":"no_match"}
+    return {"sections":secs,"path":[x["code"]+" "+x["number"] for x in secs],"status":"ok"}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "CASE_KN_MEHRA_1957",
+    "citation": "K.N. Mehra v. State of Rajasthan (1957)",
+    "title": "Motorcycle theft",
+    "summary": "Taking a vehicle without consent constitutes theft.",
+    "section_code": "IPC",
+    "section_number": "378"
+  },
+  {
+    "id": "CASE_TEJA_SINGH_1950",
+    "citation": "State of Punjab v. Teja Singh (1950)",
+    "title": "Grievous hurt",
+    "summary": "Intent to cause injury is sufficient.",
+    "section_code": "IPC",
+    "section_number": "320"
+  },
+  {
+    "id": "CASE_HRIDAYA_RANJAN_2000",
+    "citation": "Hridaya Ranjan Prasad Verma v. State of Bihar (2000)",
+    "title": "Cheating definition",
+    "summary": "Deceit must induce the delivery of property.",
+    "section_code": "IPC",
+    "section_number": "420"
+  }
+]

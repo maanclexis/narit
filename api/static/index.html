@@ -370,6 +370,19 @@
           card.appendChild(text);
         }
 
+        if (sec.cases && sec.cases.length > 0) {
+          const casesContainer = document.createElement('div');
+          casesContainer.className = 'section-cases';
+          casesContainer.style.cssText = 'margin-top: 6px; font-size: 0.85rem; color: #94a3b8; line-height: 1.4;';
+          sec.cases.forEach(c => {
+            const caseEl = document.createElement('div');
+            caseEl.className = 'case-item';
+            caseEl.innerHTML = `<strong>Precedent:</strong> ${c.citation}${c.summary ? ' &mdash; <em>' + c.summary + '</em>' : ''}`;
+            casesContainer.appendChild(caseEl);
+          });
+          card.appendChild(casesContainer);
+        }
+
         if (path && path.length > 0) {
           const details = document.createElement('details');
           details.open = true;

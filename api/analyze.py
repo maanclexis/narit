@@ -106,7 +106,7 @@ def extract_keywords(facts: str):
 def _query_neo4j(keywords):
     if not keywords: return []
     d=get_driver()
-    cy="""MATCH (s:Section) WHERE any(k IN $kw WHERE toLower(coalesce(s.text,'')) CONTAINS k OR toLower(coalesce(s.title,'')) CONTAINS k) OPTIONAL MATCH (s)-[:MAPS_TO]->(t:Section) RETURN s.code AS code,s.number AS number,s.title AS title,t.code AS target_code,t.number AS target_number LIMIT 50"""
+    cy="""MATCH (s:Section) WHERE any(k IN $kw WHERE toLower(coalesce(s.text,'')) CONTAINS k OR toLower(coalesce(s.title,'')) CONTAINS k) OPTIONAL MATCH (s)-[:MAPS_TO]->(t:Section) OPTIONAL MATCH (c:Case)-[:INTERPRETS]->(s) OPTIONAL MATCH (ct:Case)-[:INTERPRETS]->(t) RETURN s.code AS code, s.number AS number, s.title AS title, t.code AS target_code, t.number AS target_number, coalesce(c.citation, ct.citation) AS case_citation, coalesce(c.title, ct.title) AS case_title, coalesce(c.summary, ct.summary) AS case_summary LIMIT 50"""
     with d.session() as ss: return ss.run(cy,kw=keywords).data()
 
 
@@ -119,11 +119,22 @@ def analyze(req: AnalyzeRequest):
     for r in rows:
         if not r.get("number"): continue
         k=(r["code"],r["number"])
-        if k in seen: continue
-        sec={"code":r["code"],"number":r["number"],"title":r.get("title")}
-        if r.get("target_code") and r.get("target_number"):
-            sec["equivalent"]={"code":r["target_code"],"number":r["target_number"]}
-        seen[k]=sec
+        if k not in seen:
+            sec={"code":r["code"],"number":r["number"],"title":r.get("title"),"cases":[]}
+            if r.get("target_code") and r.get("target_number"):
+                sec["equivalent"]={"code":r["target_code"],"number":r["target_number"]}
+            seen[k]=sec
+        else:
+            sec=seen[k]
+        if r.get("case_citation"):
+            case_obj={
+                "citation": r["case_citation"],
+                "title": r.get("case_title", ""),
+                "summary": r.get("case_summary", "")
+            }
+            if case_obj not in sec["cases"]:
+                sec["cases"].append(case_obj)
     secs=list(seen.values())
     if not secs: return {"sections":[],"path":[],"status":"no_match"}
+    secs.sort(key=lambda x: len(x.get("cases", [])), reverse=True)
     return {"sections":secs,"path":[x["code"]+" "+x["number"] for x in secs],"status":"ok"}

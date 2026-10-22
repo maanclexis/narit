@@ -298,6 +298,30 @@
     const analyzeBtn = document.getElementById('analyze-btn');
     const resultsContainer = document.getElementById('results');
 
+    async function runAnalyze(facts) {
+      const res = await fetch('/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ facts })
+      });
+      if (!res.ok) {
+        throw new Error(`Server returned status ${res.status}`);
+      }
+      const data = await res.json();
+      const panel = document.getElementById('results') || document.getElementById('right-panel');
+
+      if (data.status === 'no_match' || !data.sections || data.sections.length === 0) {
+        panel.innerHTML =
+          '<div class="empty-state" style="padding:2rem;text-align:center;color:#94a3b8;">' +
+          '<p style="font-size:1.05rem;">No specific legal sections found. ' +
+          'Please provide more details about the incident.</p></div>';
+        return;
+      }
+
+      // ... existing success render path unchanged ...
+      renderSections(data.sections, data.path);
+    }
+
     async function analyzeFacts() {
       const facts = factsInput.value.trim();
       if (!facts) return;
@@ -307,20 +331,7 @@
       resultsContainer.innerHTML = '<div class="empty-state">Querying knowledge graph and traversing statutes...</div>';
 
       try {
-        const response = await fetch('/analyze', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ facts })
-        });
-
-        if (!response.ok) {
-          throw new Error(`Server returned status ${response.status}`);
-        }
-
-        const data = await response.json();
-        renderResults(data);
+        await runAnalyze(facts);
       } catch (err) {
         resultsContainer.innerHTML = `<div class="error-msg">Error analyzing facts: ${err.message}</div>`;
       } finally {
@@ -329,15 +340,11 @@
       }
     }
 
-    function renderResults(data) {
-      if (!data.sections || data.sections.length === 0) {
-        resultsContainer.innerHTML = '<div class="empty-state">No matching statutes found for the provided facts.</div>';
-        return;
-      }
+    function renderSections(sections, path) {
+      const panel = document.getElementById('results') || document.getElementById('right-panel');
+      panel.innerHTML = '';
 
-      resultsContainer.innerHTML = '';
-
-      data.sections.forEach(sec => {
+      sections.forEach(sec => {
         const card = document.createElement('div');
         card.className = 'section-card';
 
@@ -346,7 +353,7 @@
 
         const badge = document.createElement('span');
         badge.className = 'code-badge';
-        badge.textContent = `${sec.code} Section ${sec.number}`;
+        badge.textContent = sec.id ? sec.id.replace('_', ' ') : `${sec.code || ''} Section ${sec.number || ''}`.trim();
 
         const title = document.createElement('div');
         title.className = 'section-title';
@@ -363,23 +370,23 @@
           card.appendChild(text);
         }
 
-        if (data.path && data.path.length > 0) {
+        if (path && path.length > 0) {
           const details = document.createElement('details');
           details.open = true;
 
           const summary = document.createElement('summary');
-          summary.textContent = `Traversal Path (${data.path.length} steps)`;
+          summary.textContent = `Traversal Path (${path.length} steps)`;
           details.appendChild(summary);
 
           const list = document.createElement('ul');
           list.className = 'path-list';
 
-          data.path.forEach(step => {
+          path.forEach(step => {
             const li = document.createElement('li');
             li.className = 'path-step';
-            if (step.startsWith('Keyword:')) {
+            if (typeof step === 'string' && step.startsWith('Keyword:')) {
               li.classList.add('keyword');
-            } else if (step.includes('Statute:')) {
+            } else if (typeof step === 'string' && step.includes('Statute:')) {
               li.classList.add('statute');
             }
             li.textContent = step;
@@ -390,7 +397,7 @@
           card.appendChild(details);
         }
 
-        resultsContainer.appendChild(card);
+        panel.appendChild(card);
       });
     }
 

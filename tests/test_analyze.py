@@ -24,8 +24,7 @@ def test_analyze_endpoint():
     assert len(data["path"]) > 0
 
     first_sec = data["sections"][0]
-    assert "code" in first_sec
-    assert "number" in first_sec
+    assert "id" in first_sec
     assert "title" in first_sec
     assert "text" in first_sec
 

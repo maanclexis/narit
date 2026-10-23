@@ -52,3 +52,8 @@ app.include_router(contribute.router)
 # ── Static Files ───────────────────────────────────────────────────────
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
+
+# 20261024-003819 — search_aliases HITL
+from api.aliases import router as _aliases_router
+app.include_router(_aliases_router)
+

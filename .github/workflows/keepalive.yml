@@ -1,0 +1,50 @@
+﻿name: neo4j-keepalive
+on:
+  schedule:
+    - cron: "0 6 */2 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install "neo4j>=5"
+      - name: Aura write heartbeat (resets 72h pause)
+        env:
+          NEO4J_URI:      ${{ secrets.NEO4J_URI }}
+          NEO4J_USERNAME: ${{ secrets.NEO4J_USERNAME }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+        run: |
+          python - <<'PY'
+          import os
+          from neo4j import GraphDatabase
+          d = GraphDatabase.driver(os.environ["NEO4J_URI"],
+              auth=(os.environ["NEO4J_USERNAME"], os.environ["NEO4J_PASSWORD"]))
+          with d.session(database="neo4j") as s:
+              s.run("MERGE (hb:_Heartbeat {id: 1}) SET hb.last_cron = timestamp()")
+              r = s.run("MATCH (hb:_Heartbeat {id: 1}) RETURN hb.last_cron AS ts").single()
+          print("heartbeat:", r["ts"])
+          d.close()
+          PY
+      - name: Reset GitHub 60-day cron timer if needed
+        run: |
+          last_ts=$(git log -1 --format=%ct)
+          now_ts=$(date +%s)
+          days=$(( (now_ts - last_ts) / 86400 ))
+          echo "last commit was ${days} days ago"
+          if [ "$days" -gt 50 ]; then
+            git config user.name  "narit-keepalive"
+            git config user.email "keepalive@narit.local"
+            git commit --allow-empty -m "keepalive: reset 60-day cron timer ($(date -u +%Y-%m-%d))"
+            git push
+          else
+            echo "skip — repo active recently"
+          fi

@@ -6,3 +6,10 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
+
+# local backup files
+*.bak.*
+__pycache__/
+*.pyc
+.env
+

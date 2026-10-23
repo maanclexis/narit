@@ -20,9 +20,17 @@ def get_driver() -> Driver:
     return _driver
 
 
-def get_database() -> str:
+def get_database() -> str | None:
     """Return the configured database name."""
-    return os.environ.get("NEO4J_DATABASE", "neo4j")
+    return os.environ.get("NEO4J_DATABASE")
+
+
+def get_session():
+    """Return a new Neo4j session using the singleton driver and configured database."""
+    db = get_database()
+    if db:
+        return get_driver().session(database=db)
+    return get_driver().session()
 
 
 def close_driver() -> None:

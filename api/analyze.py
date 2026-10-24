@@ -1,4 +1,4 @@
-﻿import os
+import os
 import re
 import json
 from fastapi import APIRouter
@@ -17,19 +17,21 @@ class AnalyzeRequest(BaseModel):
 ANALYSE_SYSTEM_PROMPT = """You are a legal concept analyzer for Indian Statutory Law.
 STRICT RULE: Never generate legal advice or cite section numbers. Only analyze the input and rank search keywords.
 
-Given the user's fact pattern:
+Given the user's fact pattern fragments (each labeled with an index):
 1. 'input_understanding': A 1-sentence legal characterization identifying Actor, Act, and Harm/Effect.
 2. 'relevancy_table': Extract 3 to 5 search rows ordered from highest to lowest relevancy (0.10 to 1.00).
+   If multiple fragments are present, emit one row per fragment and tag each row with its 'fragment' index.
    - 'concept': The formal legal offence/concept name.
    - 'bare_act_terms': 2 to 3 exact archaic/statutory words used in Indian Bare Acts.
    - 'relevancy': Float score between 0.10 and 1.00.
    - 'rationale': 8-word reason why this keyword applies.
+   - 'fragment': Integer index of the fragment this row was extracted from.
 
 Output ONLY valid raw JSON matching this exact structure:
 {
   "input_understanding": "...",
   "relevancy_table": [
-    {"concept": "...", "bare_act_terms": ["...","..."], "relevancy": 0.9, "rationale": "..."}
+    {"concept": "...", "bare_act_terms": ["...","..."], "relevancy": 0.9, "rationale": "...", "fragment": 0}
   ]
 }"""
 
@@ -68,6 +70,8 @@ def build_lucene_row(row: dict) -> dict:
         "bare_act_terms": terms,
         "relevancy": float(row.get("relevancy", 0.5)),
         "rationale": row.get("rationale", ""),
+        "fragment": row.get("fragment"),
+        "fragment_text": row.get("fragment_text", ""),
         "lucene_query": " OR ".join(phrase_clauses + word_clauses) or concept,
     }
 
@@ -88,12 +92,49 @@ _FALLBACK_RULES = [
 ]
 
 
+_DECOMP_SPLIT = re.compile(r'\s+(?:and|then)\s+|[;,]', re.IGNORECASE)
+_DECOMP_LEAD = re.compile(r'^(?:and|then)\s+', re.IGNORECASE)
+_DECOMP_MAX = 4
+_DECOMP_MIN_WORDS = 2
+
+
+def split_facts(facts: str) -> list[str]:
+    """Deterministic preprocessing: split compound fact patterns into intent fragments."""
+    if not facts or not facts.strip():
+        return []
+    parts = _DECOMP_SPLIT.split(facts)
+    fragments = []
+    for p in parts:
+        if not p:
+            continue
+        p = _DECOMP_LEAD.sub('', p).strip()
+        if p and len(p.split()) >= _DECOMP_MIN_WORDS:
+            fragments.append(p)
+    if not fragments:
+        return [facts.strip()]
+    return fragments[:_DECOMP_MAX]
+
+
 def _fallback_table(facts: str) -> list[dict]:
     facts_lower = facts.lower()
     matched = [row for kws, row in _FALLBACK_RULES if any(k in facts_lower for k in kws)]
     if not matched:
         matched = [row for _, row in _FALLBACK_RULES[:2]]
     return matched
+
+
+def _fallback_table_for_fragments(fragments: list[str]) -> list[dict]:
+    """Run fallback rules per fragment, dedupe by concept, tag each row with its source fragment."""
+    seen: set[str] = set()
+    rows: list[dict] = []
+    for i, frag in enumerate(fragments):
+        for row in _fallback_table(frag):
+            concept = row.get("concept")
+            if concept in seen:
+                continue
+            seen.add(concept)
+            rows.append({**row, "fragment": i, "fragment_text": frag})
+    return rows
 
 
 _CYPHER = """
@@ -124,7 +165,9 @@ WITH primary_sec, mapped_bns,
          keyword_relevancy: kw.relevancy,
          lucene_bm25: lucene_score,
          final_weighted_score: weighted_score,
-         rationale: kw.rationale
+         rationale: kw.rationale,
+         fragment: kw.fragment,
+         fragment_text: kw.fragment_text
      })[0] AS winning_trigger,
      max(weighted_score) AS top_pair_score
 ORDER BY top_pair_score DESC
@@ -157,9 +200,17 @@ async def analyze(req: AnalyzeRequest):
     understanding = ""
     relevancy_table_raw: list[dict] = []
 
-    if _model:
+    fragments = split_facts(req.facts)
+
+    if _model and fragments:
         try:
-            resp = _model.generate_content(f"Fact pattern: {req.facts}")
+            labeled = "\n".join(f"[{i}] {frag}" for i, frag in enumerate(fragments))
+            prompt = (
+                f"Fact pattern fragments (one intent per line):\n{labeled}\n\n"
+                f"Emit relevancy_table rows tagged with 'fragment': <index>. "
+                f"One row minimum per fragment."
+            )
+            resp = _model.generate_content(prompt)
             data = json.loads(resp.text)
             understanding = data.get("input_understanding", "") or ""
             relevancy_table_raw = data.get("relevancy_table", []) or []
@@ -167,7 +218,10 @@ async def analyze(req: AnalyzeRequest):
             print(f"Gemini error: {e}")
 
     if not relevancy_table_raw:
-        relevancy_table_raw = _fallback_table(req.facts)
+        if fragments:
+            relevancy_table_raw = _fallback_table_for_fragments(fragments)
+        else:
+            relevancy_table_raw = _fallback_table(req.facts)
 
     relevancy_table = [build_lucene_row(r) for r in relevancy_table_raw if r.get("concept")]
     if not relevancy_table:
@@ -218,17 +272,22 @@ async def analyze(req: AnalyzeRequest):
         rec["references"] = refs_by_uid.get(rec.get("uid"), [])
 
     path: list[str] = [f"Input: {req.facts}"]
+    if len(fragments) > 1:
+        path.append(f"Fragments: {len(fragments)}")
+        for i, frag in enumerate(fragments):
+            path.append(f"  [{i}] {frag}")
     if understanding:
         path.append(f"Understanding: {understanding}")
     for r in relevancy_table:
-        path.append(f"Keyword: {r['concept']} (relevancy={r['relevancy']:.2f})")
+        frag_tag = f" frag={r['fragment']}" if r.get("fragment") is not None else ""
+        path.append(f"Keyword: {r['concept']} (relevancy={r['relevancy']:.2f}){frag_tag}")
 
     reasoning_steps = []
     for rec in records:
         trig = rec.get("reasoning_step") or {}
-        path.append(f"Matched: {rec['code']} {rec['number']} â€” {rec['title']}")
+        path.append(f"Matched: {rec['code']} {rec['number']} \u2014 {rec['title']}")
         if rec.get("bns_code"):
-            path.append(f"Equivalent: {rec['bns_code']} {rec['bns_number']} â€” {rec.get('bns_title','')}")
+            path.append(f"Equivalent: {rec['bns_code']} {rec['bns_number']} \u2014 {rec.get('bns_title','')}")
         reasoning_steps.append({
             "trigger": trig.get("trigger_concept"),
             "bare_act_terms": trig.get("bare_act_terms"),
@@ -236,6 +295,8 @@ async def analyze(req: AnalyzeRequest):
             "lucene_bm25": trig.get("lucene_bm25"),
             "final_score": trig.get("final_weighted_score"),
             "rationale": trig.get("rationale"),
+            "fragment": trig.get("fragment"),
+            "fragment_text": trig.get("fragment_text"),
             "primary": {"code": rec.get("code"), "number": rec.get("number"), "title": rec.get("title")},
             "mapped": (
                 {"code": rec.get("bns_code"), "number": rec.get("bns_number"), "title": rec.get("bns_title")}

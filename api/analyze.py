@@ -5,6 +5,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 import google.generativeai as genai
 from api.db import get_session
+from api.reranker import rerank as _rerank
 
 router = APIRouter()
 
@@ -171,7 +172,7 @@ WITH primary_sec, mapped_bns,
      })[0] AS winning_trigger,
      max(weighted_score) AS top_pair_score
 ORDER BY top_pair_score DESC
-LIMIT 5
+LIMIT 20
 
 WITH primary_sec, mapped_bns, winning_trigger, top_pair_score
 WHERE $act_filter IS NULL OR primary_sec.statute_role = $act_filter
@@ -242,6 +243,10 @@ async def analyze(req: AnalyzeRequest):
             "status": "no_match",
         }
 
+    # Item 3.3: rerank BM25 top-N down to top-5 via local ONNX cross-encoder
+    pre_rerank_count = len(records)
+    records, reranker_used = _rerank(req.facts, records, top_k=5)
+
     # Attach cross-references (REFERENCES edges) per returned section
     uids = [r.get("uid") for r in records if r.get("uid")]
     refs_by_uid: dict[str, list[dict]] = {}
@@ -272,6 +277,8 @@ async def analyze(req: AnalyzeRequest):
         rec["references"] = refs_by_uid.get(rec.get("uid"), [])
 
     path: list[str] = [f"Input: {req.facts}"]
+    if reranker_used:
+        path.append(f"Reranker: {pre_rerank_count} -> {len(records)} (ONNX cross-encoder)")
     if len(fragments) > 1:
         path.append(f"Fragments: {len(fragments)}")
         for i, frag in enumerate(fragments):
@@ -297,6 +304,9 @@ async def analyze(req: AnalyzeRequest):
             "rationale": trig.get("rationale"),
             "fragment": trig.get("fragment"),
             "fragment_text": trig.get("fragment_text"),
+            "bm25_score": rec.get("bm25_score"),
+            "reranker_score": rec.get("reranker_score"),
+            "blended_score": rec.get("final_score"),
             "primary": {"code": rec.get("code"), "number": rec.get("number"), "title": rec.get("title")},
             "mapped": (
                 {"code": rec.get("bns_code"), "number": rec.get("bns_number"), "title": rec.get("bns_title")}

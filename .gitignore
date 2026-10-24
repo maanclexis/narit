@@ -9,6 +9,7 @@ build/
 
 # local backup files
 *.bak.*
+_diag.txt
 __pycache__/
 *.pyc
 .env

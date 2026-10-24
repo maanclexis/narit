@@ -138,6 +138,7 @@ WHERE s = primary_sec OR s = mapped_bns
 
 RETURN primary_sec.code AS code,
        primary_sec.number AS number,
+       primary_sec.uid AS uid,
        primary_sec.title AS title,
        primary_sec.text AS text,
        mapped_bns.code AS bns_code,
@@ -186,6 +187,35 @@ async def analyze(req: AnalyzeRequest):
             "understanding": understanding, "relevancy_table": relevancy_table,
             "status": "no_match",
         }
+
+    # Attach cross-references (REFERENCES edges) per returned section
+    uids = [r.get("uid") for r in records if r.get("uid")]
+    refs_by_uid: dict[str, list[dict]] = {}
+    if uids:
+        with get_session() as session:
+            ref_result = session.run(
+                """
+                UNWIND $uids AS u
+                MATCH (s:Section {uid: u})-[r:REFERENCES]->(t:Section)
+                RETURN u AS src_uid, t.uid AS uid, t.code AS code,
+                       t.number AS number, t.title AS title,
+                       r.raw_text AS raw_text, r.pattern_type AS pattern_type
+                ORDER BY t.number
+                """,
+                uids=uids,
+            )
+            for row in ref_result:
+                d = row.data()
+                refs_by_uid.setdefault(d["src_uid"], []).append({
+                    "uid": d["uid"],
+                    "code": d["code"],
+                    "number": d["number"],
+                    "title": d["title"],
+                    "raw_text": d["raw_text"],
+                    "pattern_type": d["pattern_type"],
+                })
+    for rec in records:
+        rec["references"] = refs_by_uid.get(rec.get("uid"), [])
 
     path: list[str] = [f"Input: {req.facts}"]
     if understanding:

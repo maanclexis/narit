@@ -78,6 +78,23 @@ def cases_for_section(section_id: str):
     return [dict(r) for r in records]
 
 
+@section_router.get("/{section_id}/references", response_model=list[dict])
+def references_for_section(section_id: str):
+    """Sections cross-referenced by the given section (parsed from Bare Act text)."""
+    records, _, _ = get_driver().execute_query(
+        """
+        MATCH (s:Section {id: $id})-[r:REFERENCES]->(t:Section)
+        RETURN t.uid AS uid, t.code AS code, t.number AS number,
+               t.title AS title, r.raw_text AS raw_text,
+               r.pattern_type AS pattern_type, r.context AS context
+        ORDER BY t.number
+        """,
+        id=section_id,
+        database_=DB(),
+    )
+    return [dict(r) for r in records]
+
+
 @section_router.get("/{section_id}/mapped", response_model=list[SectionMapping])
 def cross_statute_mappings(section_id: str):
     """Find cross-statute mappings (e.g. IPC → BNS)."""

@@ -6,6 +6,7 @@ from pydantic import BaseModel
 import google.generativeai as genai
 from api.db import get_session
 from api.reranker import rerank as _rerank
+from api.hybrid import fuse as _fuse
 
 router = APIRouter()
 
@@ -243,9 +244,17 @@ async def analyze(req: AnalyzeRequest):
             "status": "no_match",
         }
 
-    # Item 3.3: rerank BM25 top-N down to top-5 via local ONNX cross-encoder
+    # Item 3.4: fuse BM25 top-N with BGE vector cosine, blended by HYBRID_BM25_WEIGHT
+    with get_session() as session:
+        records, hybrid_used = _fuse(session, req.facts, records)
+
+    # Item 3.3: rerank hybrid top-N down to top-5 via local ONNX cross-encoder
     pre_rerank_count = len(records)
-    records, reranker_used = _rerank(req.facts, records, top_k=5)
+    records, reranker_used = _rerank(
+        req.facts, records, top_k=5,
+        bm25_key="hybrid_score" if hybrid_used else "score",
+        score_label="hybrid_score" if hybrid_used else "bm25_score",
+    )
 
     # Attach cross-references (REFERENCES edges) per returned section
     uids = [r.get("uid") for r in records if r.get("uid")]
@@ -277,6 +286,8 @@ async def analyze(req: AnalyzeRequest):
         rec["references"] = refs_by_uid.get(rec.get("uid"), [])
 
     path: list[str] = [f"Input: {req.facts}"]
+    if hybrid_used:
+        path.append("Hybrid: BM25 + BGE vector cosine blended")
     if reranker_used:
         path.append(f"Reranker: {pre_rerank_count} -> {len(records)} (ONNX cross-encoder)")
     if len(fragments) > 1:
@@ -305,6 +316,8 @@ async def analyze(req: AnalyzeRequest):
             "fragment": trig.get("fragment"),
             "fragment_text": trig.get("fragment_text"),
             "bm25_score": rec.get("bm25_score"),
+            "vector_cosine": rec.get("vector_cosine"),
+            "hybrid_score": rec.get("hybrid_score"),
             "reranker_score": rec.get("reranker_score"),
             "blended_score": rec.get("final_score"),
             "primary": {"code": rec.get("code"), "number": rec.get("number"), "title": rec.get("title")},

@@ -159,13 +159,16 @@ def rerank(
     top_k: int = 5,
     bm25_key: str = "score",
     bm25_weight: float = 0.7,
+    score_label: str = "bm25_score",
 ) -> tuple[list[dict], bool]:
     """Rescore candidates by cross-encoder, blended with caller's BM25 score.
 
     Combined score: bm25_weight * norm(bm25) + (1 - bm25_weight) * norm(reranker_logit).
     BM25 carries the domain signal; cross-encoder nudges ordering within close
-    BM25 tiers. Both raw scores are preserved on each candidate as 'bm25_score'
-    and 'reranker_score'; combined lands in 'final_score'.
+    BM25 tiers. Both raw scores are preserved on each candidate — the retrieval
+    signal lands under `score_label` (default 'bm25_score'; 'hybrid_score' when
+    the caller pre-fused a vector channel) and 'reranker_score'; combined lands
+    in 'final_score'.
 
     Returns (reranked_list, used_reranker).
     On failure or empty input, returns (candidates[:top_k], False) so caller sees BM25 order.
@@ -193,7 +196,7 @@ def rerank(
     w_rer = 1.0 - w_bm25
 
     for cand, b_raw, r_raw, b_n, r_n in zip(candidates, raw_bm25, scores, norm_bm25, norm_rer):
-        cand["bm25_score"] = round(float(b_raw), 4)
+        cand[score_label] = round(float(b_raw), 4)
         cand["reranker_score"] = round(float(r_raw), 4)
         cand["final_score"] = round(w_bm25 * b_n + w_rer * r_n, 4)
 

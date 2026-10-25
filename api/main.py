@@ -57,21 +57,4 @@ app.include_router(_aliases_router)
 # Static SPA mount must be LAST — it's a catch-all that would shadow any
 # route registered after it (this is why POST /commit/aliases 405'd).
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
-
-
-# TEMP DEBUG
-@app.get("/debug/env")
-def _debug_env():
-    import os
-    out = {}
-    for k in ["NEO4J_URI", "NEO4J_USER", "NEO4J_USERNAME", "NEO4J_PASSWORD", "NEO4J_DATABASE", "GEMINI_API_KEY", "GEMINI_MODEL"]:
-        v = os.getenv(k)
-        out[k] = f"set(len={len(v)})" if v else "MISSING"
-    try:
-        from api.db import get_session
-        with get_session() as s:
-            r = s.run("RETURN 1 AS ok").single()
-        out["neo4j_probe"] = f"OK: {r['ok']}"
-    except Exception as e:
-        out["neo4j_probe"] = f"FAIL: {type(e).__name__}: {str(e)[:300]}"
-    return out
+
